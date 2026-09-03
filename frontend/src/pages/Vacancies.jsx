@@ -6,7 +6,7 @@ import PushSubscribeButton from "@/components/PushSubscribeButton";
 import { useAuth } from "@/context/AuthContext";
 import { useI18n } from "@/context/I18nContext";
 import { toast } from "sonner";
-import { FaSearch, FaExternalLinkAlt, FaSync, FaCalendarAlt, FaBriefcase, FaClock, FaChevronRight, FaGraduationCap, FaBuilding, FaFileAlt, FaGlobe, FaShareAlt, FaBookmark, FaRegBookmark, FaMapMarkerAlt, FaWhatsapp } from "react-icons/fa";
+import { FaSearch, FaExternalLinkAlt, FaSync, FaCalendarAlt, FaBriefcase, FaClock, FaChevronRight, FaGraduationCap, FaBuilding, FaFileAlt, FaGlobe, FaShareAlt, FaBookmark, FaRegBookmark, FaMapMarkerAlt, FaWhatsapp, FaUsers } from "react-icons/fa";
 import { WHATSAPP_CHANNEL_URL } from "@/lib/whatsapp";
 import ShareModal from "@/components/poster/ShareModal";
 import SEO from "@/components/SEO";
@@ -299,24 +299,47 @@ const Vacancies = () => {
               {[...Array(9)].map((_, i) => <div key={i} className="h-11 rounded-xl bg-white/5 animate-pulse" />)}
             </div>
           ) : (
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-              {latestJobs.slice(0, 9).map((v, i) => (
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {latestJobs.slice(0, 9).map((v, i) => {
+                const posts = v.structured?.total_posts_num || v.structured?.total_posts ||
+                  (String(v.post_name || v.title || "").match(/(\d[\d,]*)\s*(?:posts?|vacanc|seat)/i)?.[1]);
+                return (
                 <li key={v.id || i}>
                   <Link
                     to={`/vacancies/${v.id}`}
-                    className="group flex items-center gap-2.5 h-full px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-blue-400/50 hover:bg-blue-500/10 hover:-translate-y-0.5 transition-all duration-200"
+                    className="group flex flex-col h-full rounded-xl bg-white/[0.05] border border-white/10 hover:border-blue-400/50 hover:bg-blue-500/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/30 transition-all duration-200 overflow-hidden"
                     data-testid={`new-update-${i}`}
                   >
-                    <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 text-white grid place-items-center text-[10px] font-black shrink-0 shadow-md shadow-blue-500/30">
-                      {i + 1}
-                    </span>
-                    <span className="text-[13px] font-semibold text-slate-200 group-hover:text-white leading-snug line-clamp-2 flex-1">
-                      {v.post_name || v.title}
-                    </span>
-                    <FaChevronRight className="text-[10px] text-blue-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all shrink-0" />
+                    <div className="flex items-start gap-2.5 px-3.5 pt-3.5 pb-2">
+                      <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 text-white grid place-items-center text-xs font-black shrink-0 shadow-md shadow-blue-500/30">
+                        {i + 1}
+                      </span>
+                      <span className="text-[13px] font-bold text-slate-100 group-hover:text-white leading-snug line-clamp-2 flex-1">
+                        {v.post_name || v.title}
+                      </span>
+                    </div>
+                    <div className="mt-auto px-3.5 pb-3 flex items-center gap-2 flex-wrap">
+                      {posts && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                          <FaUsers className="text-[9px]" /> {posts} Posts
+                        </span>
+                      )}
+                      {v.qualification && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-sky-300 bg-sky-500/10 border border-sky-500/25 px-2 py-0.5 rounded-full max-w-[140px] truncate">
+                          <FaGraduationCap className="text-[9px] shrink-0" /> {v.qualification}
+                        </span>
+                      )}
+                      {v.last_date_text && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/25 px-2 py-0.5 rounded-full max-w-[130px] truncate">
+                          <FaCalendarAlt className="text-[9px] shrink-0" /> {v.last_date_text}
+                        </span>
+                      )}
+                      <FaChevronRight className="ml-auto text-[10px] text-blue-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                    </div>
                   </Link>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           )}
           <div className="text-center mt-4">
@@ -380,7 +403,7 @@ const Vacancies = () => {
         {Object.entries(CAT_LABELS).map(([k, v]) => (
           <button
             key={k}
-            onClick={() => { setCategory(k); scrollToList(); }}
+            onClick={() => { setCategory(k); setState("all"); scrollToList(); }}
             className={`pill-3d px-4 py-2 text-xs ${category === k ? "is-active" : ""}`}
             data-testid={`vac-cat-${k}`}
           >
@@ -392,7 +415,7 @@ const Vacancies = () => {
         {STATES.map((s) => (
           <button
             key={s.key}
-            onClick={() => { setState(s.key); scrollToList(); }}
+            onClick={() => { setState(s.key); setCategory("all"); scrollToList(); }}
             className={`pill-3d px-3 py-1.5 text-[11px] uppercase tracking-wide ${state === s.key ? "is-active" : ""}`}
             data-testid={`vac-state-${s.key}`}
           >
