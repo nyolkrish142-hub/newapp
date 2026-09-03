@@ -31,6 +31,12 @@ User's existing app (GitHub: sanjivkumar71771-commits/Haryana-Enterprises) — H
 - Migrated 24 demo Haryana jobs into `vacancies` (manual source) so homepage has Haryana-specific content.
 - Fixed CORS: frontend now same-origin (REACT_APP_BACKEND_URL = current preview URL); backend CORS_ORIGINS explicit list.
 
+## Implemented (2026-09-03, round 2)
+- Homepage redesign per user's FreeJobAlert reference images: filter panel simplified to Search + Qualification only (state select, saved toggle, category chips, offline-mode chip removed from panel to reduce customer confusion).
+- "New Updates" section below email-alerts box: 9 latest vacancies in numbered modern cards (3-col grid), blue gradient header with live pulse dot, "View All" button scrolls to listing.
+- Category pills (modern gradient blue, rounded-full) + State pills (HR, DL, PB... short codes) above the listing — both functional (set filters + scroll).
+- Webpushr push notifications: snippet in public/index.html (site key placeholder WEBPUSHR_SITE_KEY_HERE — awaiting user's key), public/webpushr-sw.js (standard importScripts worker), PushSubscribeButton (bell) in New Updates header, backend POST /api/webpushr/subscriber stores subscriber IDs in Mongo `push_subscribers`.
+
 ## Admin Panel Tabs
 Manual Vacancies | Job SEO Manager | Manage Blogs | CV Templates | Site SEO | Front-page Text
 

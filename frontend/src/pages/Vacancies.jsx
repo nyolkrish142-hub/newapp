@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "@/lib/api";
 import JobAlertSubscribe from "@/components/JobAlertSubscribe";
+import PushSubscribeButton from "@/components/PushSubscribeButton";
 import { useAuth } from "@/context/AuthContext";
 import { useI18n } from "@/context/I18nContext";
 import { toast } from "sonner";
@@ -99,6 +100,15 @@ const STATES = [
   { key: "jammu-kashmir",    hi: "जम्मू-कश्मीर",     en: "Jammu & Kashmir" },
 ];
 
+// Short state codes for FreeJobAlert-style pills
+const STATE_CODES = {
+  all: "ALL", haryana: "HR", delhi: "DL", punjab: "PB", rajasthan: "RJ", chandigarh: "CH",
+  "himachal-pradesh": "HP", uttarakhand: "UK", "uttar-pradesh": "UP", "madhya-pradesh": "MP",
+  bihar: "BR", jharkhand: "JH", gujarat: "GJ", maharashtra: "MH", karnataka: "KA",
+  "tamil-nadu": "TN", kerala: "KL", "andhra-pradesh": "AP", telangana: "TS",
+  "west-bengal": "WB", odisha: "OD", chhattisgarh: "CG", assam: "AS", "jammu-kashmir": "JK",
+};
+
 // Local bookmarks (saved vacancies) — stored in localStorage under this key.
 const BOOKMARK_KEY = "he_saved_vacancies_v1";
 const readBookmarks = () => {
@@ -140,6 +150,11 @@ const Vacancies = () => {
   const [total, setTotal] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
   const [shareVac, setShareVac] = useState(null);
+  const [latestJobs, setLatestJobs] = useState([]);
+
+  const scrollToList = () => {
+    document.getElementById("all-vacancies")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const toggleBookmark = (id) => {
     setBookmarks(prev => {
@@ -180,6 +195,13 @@ const Vacancies = () => {
 
   useEffect(() => { load(); /* eslint-disable-next-line */ }, [category, qualification, mode, state, page]);
   useEffect(() => { setPage(1); }, [category, qualification, mode, state]);
+
+  // Latest 9 vacancies for the "New Updates" strip (always unfiltered)
+  useEffect(() => {
+    api.get("/vacancies", { params: { page: 1, per_page: 9 } })
+      .then((r) => setLatestJobs(Array.isArray(r.data) ? r.data : r.data?.items || []))
+      .catch(() => {});
+  }, []);
 
   const refresh = async () => {
     setRefreshing(true);
@@ -251,6 +273,65 @@ const Vacancies = () => {
       {/* Job Alert Subscription (Free) */}
       <JobAlertSubscribe />
 
+      {/* New Updates — latest vacancies quick list */}
+      <div className="mb-6 rounded-2xl overflow-hidden border border-blue-400/20 shadow-2xl shadow-blue-900/20" data-testid="new-updates-section">
+        <div className="relative bg-gradient-to-r from-[#153e75] via-[#2b6cb0] to-[#3182ce] px-5 py-3.5 flex items-center justify-between gap-3 flex-wrap overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_120%,rgba(255,255,255,0.15),transparent_50%)] pointer-events-none"></div>
+          <div className="relative flex items-center gap-3">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            </span>
+            <div>
+              <h2 className="font-display text-white font-extrabold text-lg sm:text-xl leading-tight tracking-tight">
+                {lang === "hi" ? "नई अपडेट्स" : "New Updates"}
+              </h2>
+              <p className="text-blue-100/90 text-[11px] sm:text-xs">
+                {lang === "hi" ? "आज की ताज़ा सरकारी भर्ती notifications — पूरे भारत से" : "Today's latest government job notifications across India"}
+              </p>
+            </div>
+          </div>
+          <PushSubscribeButton lang={lang} />
+        </div>
+        <div className="glass-strong px-4 sm:px-5 py-4">
+          {latestJobs.length === 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+              {[...Array(9)].map((_, i) => <div key={i} className="h-11 rounded-xl bg-white/5 animate-pulse" />)}
+            </div>
+          ) : (
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+              {latestJobs.slice(0, 9).map((v, i) => (
+                <li key={v.id || i}>
+                  <Link
+                    to={`/vacancies/${v.id}`}
+                    className="group flex items-center gap-2.5 h-full px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-blue-400/50 hover:bg-blue-500/10 hover:-translate-y-0.5 transition-all duration-200"
+                    data-testid={`new-update-${i}`}
+                  >
+                    <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 text-white grid place-items-center text-[10px] font-black shrink-0 shadow-md shadow-blue-500/30">
+                      {i + 1}
+                    </span>
+                    <span className="text-[13px] font-semibold text-slate-200 group-hover:text-white leading-snug line-clamp-2 flex-1">
+                      {v.post_name || v.title}
+                    </span>
+                    <FaChevronRight className="text-[10px] text-blue-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+          <div className="text-center mt-4">
+            <button
+              onClick={scrollToList}
+              className="group inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-bold text-sm px-8 py-2.5 rounded-full shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:-translate-y-0.5 transition-all duration-200"
+              data-testid="new-updates-view-all"
+            >
+              {lang === "hi" ? "सभी भर्तियाँ देखें" : "View All Vacancies"}
+              <FaChevronRight className="text-xs group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* WhatsApp Channel banner */}
       <div className="mb-6 rounded-2xl bg-gradient-to-r from-[#075E54] via-[#128C7E] to-[#25D366] p-[1px]" data-testid="whatsapp-banner">
         <div className="rounded-2xl bg-black/30 backdrop-blur px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
@@ -273,7 +354,7 @@ const Vacancies = () => {
           <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-emerald-500/8 blur-3xl pointer-events-none"></div>
           <div className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-amber-500/8 blur-3xl pointer-events-none"></div>
           <div className="relative flex flex-col md:flex-row gap-3">
-            <form onSubmit={(e) => { e.preventDefault(); load(); }} className="input-icon-wrap flex-1">
+            <form onSubmit={(e) => { e.preventDefault(); if (page !== 1) setPage(1); else load(); }} className="input-icon-wrap flex-1">
               <FaSearch className="icon" />
               <input className="input" placeholder={lang === "hi" ? "खोजें… (SSC, PNB, teacher…)" : "Search… (SSC, PNB, teacher…)"}
                 value={q} onChange={(e) => setQ(e.target.value)} data-testid="vacancies-search" />
@@ -288,104 +369,44 @@ const Vacancies = () => {
                 <option key={qOpt.key} value={qOpt.key}>{lang === "hi" ? qOpt.hi : qOpt.en}</option>
               ))}
             </select>
-            <select
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              className="input md:w-56"
-              data-testid="vacancies-state-filter"
-              aria-label={lang === "hi" ? "राज्य चुनें" : "Select State"}
-            >
-              {STATES.map(s => {
-                const cnt = s.key === "all"
-                  ? undefined
-                  : stats?.by_state?.find(x => x.state === s.key)?.count;
-                return (
-                  <option key={s.key} value={s.key}>
-                    {lang === "hi" ? s.hi : s.en}
-                    {typeof cnt === "number" ? ` (${cnt})` : ""}
-                  </option>
-                );
-              })}
-            </select>
-            <button
-              type="button"
-              onClick={() => setSavedOnly(v => !v)}
-              data-testid="vacancies-saved-only-toggle"
-              className={`vac-mode-chip px-3 py-2 rounded-full text-xs font-semibold border transition-all whitespace-nowrap ${
-                savedOnly
-                  ? "is-active-amber bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/40"
-                  : ""
-              }`}
-              title={lang === "hi" ? "सहेजी गई भर्तियाँ दिखाएँ" : "Show saved vacancies"}
-            >
-              <FaBookmark className="inline mr-1 text-[10px]" />
-              {lang === "hi" ? "सहेजी गईं" : "Saved"} ({bookmarks.length})
-            </button>
           </div>
 
-          {/* Attractive category chips — color-coded gradient pills with icon dots */}
-          <div className="relative flex gap-2 overflow-x-auto pb-1" data-testid="vacancies-cat-row">
-            {Object.entries(CAT_LABELS).map(([k, v]) => {
-              const cnt = k === "all" ? stats?.total : stats?.by_category?.find(c => c.category === k)?.count;
-              const isActive = category === k;
-              // Color tokens per category — distinct so they're scannable
-              const palette = {
-                all:        { on: "from-emerald-500 to-teal-500", dot: "bg-emerald-400" },
-                admit_card: { on: "from-sky-500 to-cyan-500",     dot: "bg-sky-400" },
-                result:     { on: "from-violet-500 to-fuchsia-500", dot: "bg-violet-400" },
-                ssc:        { on: "from-indigo-500 to-blue-500",  dot: "bg-indigo-400" },
-                railway:    { on: "from-orange-500 to-amber-500", dot: "bg-orange-400" },
-                bank:       { on: "from-emerald-500 to-green-500", dot: "bg-emerald-400" },
-                police:     { on: "from-blue-600 to-indigo-600",  dot: "bg-blue-400" },
-                upsc:       { on: "from-rose-500 to-pink-500",    dot: "bg-rose-400" },
-                defence:    { on: "from-slate-600 to-slate-700",  dot: "bg-slate-300" },
-                teaching:   { on: "from-purple-500 to-fuchsia-500", dot: "bg-purple-400" },
-                medical:    { on: "from-red-500 to-rose-500",     dot: "bg-red-400" },
-                psu:        { on: "from-yellow-500 to-orange-500", dot: "bg-yellow-400" },
-                haryana:    { on: "from-amber-500 to-yellow-500", dot: "bg-amber-400" },
-                other:      { on: "from-slate-500 to-slate-600",  dot: "bg-slate-400" },
-              }[k] || { on: "from-slate-500 to-slate-600", dot: "bg-slate-400" };
-              return (
-                <button key={k} onClick={() => setCategory(k)}
-                  className={`vac-cat-chip shrink-0 group inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all border ${
-                    isActive
-                      ? `is-active bg-gradient-to-r ${palette.on} text-white border-white/30 shadow-lg shadow-emerald-500/20 scale-105`
-                      : "hover:scale-[1.03]"
-                  }`}
-                  data-testid={`vac-cat-${k}`}>
-                  <span className={`vac-cat-dot w-1.5 h-1.5 rounded-full ${isActive ? "bg-white" : palette.dot} ${isActive ? "" : "group-hover:scale-125"} transition-transform`}></span>
-                  {lang === "hi" ? v.hi : v.en}
-                  {cnt !== undefined && (
-                    <span className={`vac-cat-count ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-black ${
-                      isActive ? "bg-white/25 text-white" : ""
-                    }`}>{cnt}</span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Application Mode Filter — vendor focuses on Offline Form services,
-              so we only show a single toggle chip. Click to filter, click again to reset. */}
-          <div className="vac-mode-sep relative flex items-center gap-2 flex-wrap pt-2 border-t border-white/5">
-            <span className="vac-mode-label text-[10px] uppercase tracking-widest text-slate-500 font-semibold mr-1">
-              {lang === "hi" ? "आवेदन प्रकार" : "Application Mode"}:
-            </span>
-            <button
-              type="button"
-              onClick={() => setMode(mode === "offline" ? "all" : "offline")}
-              className={`vac-mode-chip px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
-                mode === "offline"
-                  ? "is-active-amber bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/40"
-                  : ""
-              }`}
-              data-testid="vac-mode-offline"
-              aria-pressed={mode === "offline"}
-            >
-              {lang === "hi" ? "ऑफलाइन फॉर्म" : "Offline Form"} ({modeCounts.offline || 0})
-            </button>
-          </div>
         </div>
+      </div>
+
+      {/* Category quick pills — site-theme glass pills with emerald accents */}
+      <div id="all-vacancies" className="scroll-mt-28"></div>
+      <div className="mb-2.5 flex gap-2 flex-wrap" data-testid="vacancies-cat-row">
+        {Object.entries(CAT_LABELS).map(([k, v]) => (
+          <button
+            key={k}
+            onClick={() => { setCategory(k); scrollToList(); }}
+            className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 border ${
+              category === k
+                ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-300/50 shadow-lg shadow-emerald-500/30 scale-105"
+                : "bg-white/5 text-slate-300 border-white/10 hover:border-emerald-500/40 hover:text-white hover:-translate-y-0.5 hover:bg-emerald-500/10"
+            }`}
+            data-testid={`vac-cat-${k}`}
+          >
+            {lang === "hi" ? v.hi : v.en}
+          </button>
+        ))}
+      </div>
+      <div className="mb-6 flex gap-1.5 flex-wrap" data-testid="vacancies-state-row">
+        {STATES.map((s) => (
+          <button
+            key={s.key}
+            onClick={() => { setState(s.key); scrollToList(); }}
+            className={`px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wide transition-all duration-200 border ${
+              state === s.key
+                ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-300/50 shadow-lg shadow-emerald-500/30 scale-105"
+                : "bg-white/[0.04] text-slate-400 border-white/10 hover:border-emerald-500/40 hover:text-emerald-300 hover:bg-emerald-500/10"
+            }`}
+            data-testid={`vac-state-${s.key}`}
+          >
+            {lang === "hi" ? s.hi : (STATE_CODES[s.key] || s.en)}
+          </button>
+        ))}
       </div>
 
       {/* Vacancy list */}

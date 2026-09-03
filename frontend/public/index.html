@@ -52,6 +52,12 @@
           } catch (e) {}
         </script>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
+        <!-- Webpushr push notifications — replace WEBPUSHR_SITE_KEY_HERE with the site key from the Webpushr dashboard -->
+        <script>
+        (function(w,d,s,id){if(typeof w.webpushr!=="undefined")return;w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};var js=d.createElement(s),fjs=d.getElementsByTagName(s)[0];js.id=id;js.async=true;js.src="https://cdn.webpushr.com/app.min.js";fjs.parentNode.insertBefore(js,fjs);})(window,document,"script","webpushr-jssdk");
+        webpushr("setup",{key:"WEBPUSHR_SITE_KEY_HERE"});
+        function _webpushrScriptReady(){webpushr("fetch_id",function(sid){if(!sid)return;fetch("/api/webpushr/subscriber",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({subscriber_id:Number(sid)})}).catch(function(){});});}
+        </script>
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>

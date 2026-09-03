@@ -1701,6 +1701,22 @@ async def admin_delete_blog(blog_id: str, _=Depends(require_admin)):
     return {"ok": True}
 
 
+# ─────────── Webpushr push subscribers ───────────
+class WebpushrSubscriberIn(BaseModel):
+    subscriber_id: int
+
+
+@api.post("/webpushr/subscriber")
+async def save_webpushr_subscriber(payload: WebpushrSubscriberIn):
+    """Store/refresh a Webpushr subscriber ID (sent by the frontend snippet after subscribe)."""
+    await db.push_subscribers.update_one(
+        {"subscriber_id": payload.subscriber_id},
+        {"$set": {"subscriber_id": payload.subscriber_id, "updated_at": datetime.now(timezone.utc)}},
+        upsert=True,
+    )
+    return {"ok": True}
+
+
 # ─────────── Include router + CORS ───────────
 app.include_router(api)
 
