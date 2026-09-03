@@ -34,7 +34,7 @@ from auth import (
 )
 from emails import send_email, send_email_async, render_confirmation, render_reset
 from csc_services import CSC_CATEGORIES, all_service_ids, find_service
-from scrapers import fetch_freejobalert, refresh_vacancies_into_db, fetch_article_detail, backfill_application_mode, is_expired, parse_last_date, state_from_text, _cat_from_title
+from scrapers import fetch_freejobalert, refresh_vacancies_into_db, fetch_article_detail, backfill_application_mode, is_expired, parse_last_date, state_from_text, _cat_from_title, _dedupe_key
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 # MongoDB
@@ -1769,6 +1769,18 @@ async def startup():
     except Exception as e:
         log.warning(f"vacancy enrich backfill failed: {e}")
 
+    # One-time backfill: dedupe_key on existing vacancies so the 2nd source
+    # (Haryana DC Rate/HKRN) can never create duplicate posts.
+    try:
+        cnt = 0
+        async for d in db.vacancies.find({"dedupe_key": {"$exists": False}}, {"title": 1}):
+            await db.vacancies.update_one({"_id": d["_id"]}, {"$set": {"dedupe_key": _dedupe_key(d.get("title", ""))}})
+            cnt += 1
+        if cnt:
+            log.info(f"[startup] dedupe_key backfilled on {cnt} vacancies")
+    except Exception as e:
+        log.warning(f"dedupe_key backfill failed: {e}")
+
     # Backfill user_id on legacy users
     async for u in db.users.find({"user_id": {"$exists": False}}):
         await db.users.update_one({"_id": u["_id"]}, {"$set": {"user_id": str(u["_id"])}})
@@ -1915,7 +1927,7 @@ async def shutdown():
     client.close()
 
 
-# ─────────── Background scheduler (FreeJobAlert every 6 hrs) ───────────
+# ─────────── Background scheduler (all sources every 1 hr) ───────────
 _scheduler = AsyncIOScheduler(timezone="Asia/Kolkata")
 
 
@@ -1936,9 +1948,9 @@ async def start_scheduler():
         except Exception as e:
             log.warning(f"[scheduler] Vacancy refresh failed: {e}")
 
-    _scheduler.add_job(_job, "interval", hours=6, next_run_time=datetime.now(timezone.utc))
+    _scheduler.add_job(_job, "interval", hours=1, next_run_time=datetime.now(timezone.utc))
     _scheduler.start()
-    log.info("Scheduler started (vacancies every 6h)")
+    log.info("Scheduler started (vacancies every 1h — FreeJobAlert + Haryana DC Rate)")
 
 
 @app.on_event("shutdown")

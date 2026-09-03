@@ -257,7 +257,7 @@ const Vacancies = () => {
             {lang === "hi" ? (<>ताज़ा <span className="text-amber-400">सरकारी भर्तियाँ</span></>) : (<>Latest <span className="text-amber-400">Government Vacancies</span></>)}
           </h1>
           <p className="text-slate-400 mt-2 text-sm">
-            {lang === "hi" ? "हर 6 घंटे में automatic update।" : "Auto-updated every 6 hours."}
+            {lang === "hi" ? "हर 1 घंटे में automatic update।" : "Auto-updated every hour."}
             {stats?.last_updated && (
               <span className="ml-2 text-emerald-400"><FaClock className="inline mr-1" /> {new Date(stats.last_updated).toLocaleString()}</span>
             )}
@@ -381,11 +381,7 @@ const Vacancies = () => {
           <button
             key={k}
             onClick={() => { setCategory(k); scrollToList(); }}
-            className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 border ${
-              category === k
-                ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-300/50 shadow-lg shadow-emerald-500/30 scale-105"
-                : "bg-white/5 text-slate-300 border-white/10 hover:border-emerald-500/40 hover:text-white hover:-translate-y-0.5 hover:bg-emerald-500/10"
-            }`}
+            className={`pill-3d px-4 py-2 text-xs ${category === k ? "is-active" : ""}`}
             data-testid={`vac-cat-${k}`}
           >
             {lang === "hi" ? v.hi : v.en}
@@ -397,11 +393,7 @@ const Vacancies = () => {
           <button
             key={s.key}
             onClick={() => { setState(s.key); scrollToList(); }}
-            className={`px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wide transition-all duration-200 border ${
-              state === s.key
-                ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-300/50 shadow-lg shadow-emerald-500/30 scale-105"
-                : "bg-white/[0.04] text-slate-400 border-white/10 hover:border-emerald-500/40 hover:text-emerald-300 hover:bg-emerald-500/10"
-            }`}
+            className={`pill-3d px-3 py-1.5 text-[11px] uppercase tracking-wide ${state === s.key ? "is-active" : ""}`}
             data-testid={`vac-state-${s.key}`}
           >
             {lang === "hi" ? s.hi : (STATE_CODES[s.key] || s.en)}

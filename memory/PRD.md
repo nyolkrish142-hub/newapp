@@ -43,9 +43,16 @@ Manual Vacancies | Job SEO Manager | Manage Blogs | CV Templates | Site SEO | Fr
 ## Backlog
 - P1: WhatsApp auto-post to channel (needs WhatsApp Business API key from user)
 - P1: Public /resume-templates standalone page (currently inside /downloads)
+- P1: Webpushr site key from user (placeholder in index.html — everything else ready)
 - P2: Blog categories/tags, blog SEO fields
 - P2: Sitemap.xml update for /solar + /blogs routes
 - P2: Admin inquiries view for solar enquiry form
+
+## Implemented (2026-09-03, round 3)
+- **2nd job source: Haryana DC Rate / HKRN** — `fetch_haryana_dcrate()` in scrapers.py scrapes jobpulse.in DC-Rate + HKRN category pages (official HKRN portal blocks non-India traffic; haryanadcratejobs.com is now a spam preset site, so jobpulse mirrors are used). Tagged source="haryana_dcrate", auto category/state (default haryana), WhatsApp summaries + SEO variants auto-applied.
+- **Cross-source dedupe** — every vacancy gets `dedupe_key` (normalized title); refresh merges same-title-different-URL posts into one doc (alt_urls) instead of duplicating; one-time startup backfill; cleaned 44 legacy duplicates.
+- **Scheduler: 6h → 1h** auto refresh for BOTH sources; frontend text updated ("हर 1 घंटे में automatic update").
+- `_cat_from_title` now recognizes hkrn/dc-rate keywords → haryana category.
 
 ## Test Credentials
 - Admin: nyolkrish142@gmail.com / Haryana@123

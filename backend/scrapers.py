@@ -55,7 +55,7 @@ def _cat_from_title(title: str) -> str:
     if any(k in t for k in ["upsc", "ias", "ips"]): return "upsc"
     if any(k in t for k in ["army", "navy", "air force", "airforce", "defence", "bsf", "crpf", "cisf"]): return "defence"
     if any(k in t for k in ["teacher", "tet", "ctet", "htet", "professor", "kvs", "nvs"]): return "teaching"
-    if any(k in t for k in ["haryana", "hssc", "hpsc"]): return "haryana"
+    if any(k in t for k in ["haryana", "hssc", "hpsc", "hkrn", "dc rate", "dc-rate"]): return "haryana"
     if any(k in t for k in ["engineer", "psu", "ongc", "iocl", "hpcl", "gail", "bhel", "ntpc"]): return "psu"
     if any(k in t for k in ["nurse", "doctor", "medical", "aiims", "esic", "hospital"]): return "medical"
     return "other"
@@ -429,23 +429,113 @@ async def fetch_freejobalert() -> List[Dict]:
 
 
 async def refresh_vacancies_into_db(db) -> int:
-    vacs = await fetch_freejobalert()
+    """Refresh vacancies from ALL sources (FreeJobAlert + Haryana DC Rate/HKRN).
+
+    Duplicate protection:
+      1. Same URL            -> update existing doc (never a new post)
+      2. Same normalized title across sources (different URL) -> merge into the
+         existing doc instead of creating a duplicate post (dedupe_key match)
+    """
+    fja = await fetch_freejobalert()
+    dcr = await fetch_haryana_dcrate()
+    vacs = fja + dcr
     if not vacs:
         return 0
     added = 0
+    merged = 0
     for v in vacs:
+        v["dedupe_key"] = _dedupe_key(v.get("title", ""))
         try:
-            res = await db.vacancies.update_one(
-                {"url": v["url"]},
-                {"$set": v, "$setOnInsert": {"created_at": datetime.now(timezone.utc)}},
-                upsert=True,
-            )
-            if res.upserted_id:
-                added += 1
+            by_url = await db.vacancies.find_one({"url": v["url"]}, {"_id": 1})
+            if by_url:
+                await db.vacancies.update_one({"_id": by_url["_id"]}, {"$set": v})
+                continue
+            if v["dedupe_key"]:
+                dupe = await db.vacancies.find_one(
+                    {"dedupe_key": v["dedupe_key"], "source": {"$ne": "manual"}},
+                    {"_id": 1},
+                )
+                if dupe:
+                    await db.vacancies.update_one(
+                        {"_id": dupe["_id"]},
+                        {"$set": v, "$addToSet": {"alt_urls": v["url"]}},
+                    )
+                    merged += 1
+                    continue
+            v["created_at"] = datetime.now(timezone.utc)
+            await db.vacancies.insert_one(v)
+            added += 1
         except Exception as e:
             log.warning(f"upsert vacancy failed: {e}")
-    log.info(f"Vacancies refresh: total={len(vacs)}, new={added}")
+    log.info(f"Vacancies refresh: total={len(vacs)}, new={added}, cross-source-merged={merged}")
     return added
+
+
+def _dedupe_key(title: str) -> str:
+    """Normalized alphanumeric title used for cross-source duplicate detection."""
+    return re.sub(r"[^a-z0-9]+", "", (title or "").lower())[:120]
+
+
+# ─────────── Haryana DC Rate / HKRN Jobs (2nd source) ───────────
+# The official HKRN portal (hkrnl.itiharyana.gov.in) blocks non-India traffic,
+# so DC Rate / HKRN listings are mirrored from jobpulse.in category pages.
+DCRATE_SOURCES = [
+    ("dc_rate", "https://jobpulse.in/dc-rate-jobs/"),
+    ("hkrn", "https://jobpulse.in/hkrn/"),
+]
+
+
+async def fetch_haryana_dcrate() -> List[Dict]:
+    results: List[Dict] = []
+    now = datetime.now(timezone.utc)
+    async with httpx.AsyncClient(headers=HEADERS, timeout=25.0, follow_redirects=True) as http:
+        for src_type, url in DCRATE_SOURCES:
+            try:
+                r = await http.get(url)
+                if r.status_code != 200:
+                    log.warning(f"DCRate {src_type}: HTTP {r.status_code}")
+                    continue
+                soup = BeautifulSoup(r.text, "html.parser")
+                content = soup.select_one(".entry-content") or soup
+                seen = set()
+                for a in content.select("ul.lcp_catlist li a[href], article a[href]"):
+                    href = (a.get("href") or "").strip()
+                    title = _clean(a.get_text(" ", strip=True))
+                    if not href.startswith("https://jobpulse.in/") or href in seen:
+                        continue
+                    if any(x in href for x in ("/category/", "/dc-rate-jobs", "/hkrn/", "#", "/tag/", "/page/")):
+                        continue
+                    if not title or title.lower() in JUNK_TITLES or len(title) < 12:
+                        continue
+                    seen.add(href)
+                    words = title.split()
+                    org = "HKRN / DC Rate" if re.search(r"\bhkrn\b|dc\s*rate", title, re.I) else " ".join(words[:2])
+                    results.append({
+                        "title": title[:250],
+                        "url": href,
+                        "organization": org[:120],
+                        "post_name": title[:200],
+                        "qualification": "",
+                        "post_date_text": "",
+                        "last_date_text": None,
+                        "application_mode": _detect_application_mode(title, href),
+                        "category": _cat_from_title(title),
+                        "row_text": title[:500],
+                        "source": "haryana_dcrate",
+                        "source_type": src_type,
+                        "fetched_at": now,
+                    })
+            except Exception as e:
+                log.error(f"DCRate {src_type} error: {e}")
+    by_url: Dict[str, Dict] = {}
+    for v in results:
+        by_url.setdefault(v["url"], v)
+    out = list(by_url.values())
+    for v in out:
+        # DC Rate is a Haryana-specific scheme — default state to haryana
+        v["state"] = state_from_text(v.get("title", ""), v.get("organization", ""), v.get("row_text", "")) or "haryana"
+    log.info(f"DCRate scrape: {len(out)} items")
+    return out
 
 
 async def backfill_application_mode(db) -> dict:
