@@ -54,5 +54,8 @@ Manual Vacancies | Job SEO Manager | Manage Blogs | CV Templates | Site SEO | Fr
 - **Scheduler: 6h → 1h** auto refresh for BOTH sources; frontend text updated ("हर 1 घंटे में automatic update").
 - `_cat_from_title` now recognizes hkrn/dc-rate keywords → haryana category.
 
+## Bug Fix (2026-09-03)
+- **"Failed to load" cross-origin bug**: frontend had env-baked backend URL; opening the site via a different preview domain broke credentialed CORS requests. Fixed with dynamic same-origin BACKEND_URL in lib/api.js (all 10 files now import from it). Verified by testing_agent on both domains — 100% pass (iteration_2.json).
+
 ## Test Credentials
 - Admin: nyolkrish142@gmail.com / Haryana@123

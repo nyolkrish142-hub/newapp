@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { FaPlus, FaEdit, FaTrash, FaTimes, FaSave, FaBold, FaItalic, FaHeading, FaListUl, FaLink, FaImage } from "react-icons/fa";
 import { adminApi } from "./adminAuth";
 
-const BACKEND = process.env.REACT_APP_BACKEND_URL;
+import { BACKEND_URL as BACKEND } from "@/lib/api";
 const inputCls = "w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-emerald-500 outline-none text-sm text-slate-900 bg-white";
 const EMPTY = { title: "", excerpt: "", content: "", status: "published" };
 

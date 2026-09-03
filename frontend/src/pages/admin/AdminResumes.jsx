@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { FaUpload, FaTrash, FaDownload, FaFileAlt } from "react-icons/fa";
 import { adminApi } from "./adminAuth";
 
-const BACKEND = process.env.REACT_APP_BACKEND_URL;
+import { BACKEND_URL as BACKEND } from "@/lib/api";
 
 const AdminResumes = () => {
   const [items, setItems] = useState([]);

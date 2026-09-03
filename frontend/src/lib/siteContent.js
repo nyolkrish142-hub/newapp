@@ -8,8 +8,7 @@
  */
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { API } from "@/lib/api";
 
 let _cache = null;
 let _inflight = null;

@@ -3,7 +3,7 @@ import api from "@/lib/api";
 import { useI18n } from "@/context/I18nContext";
 import { FaFileDownload, FaFilePdf, FaFileAlt } from "react-icons/fa";
 
-const BACKEND = process.env.REACT_APP_BACKEND_URL;
+import { BACKEND_URL as BACKEND } from "@/lib/api";
 
 const Downloads = () => {
   const { lang } = useI18n();

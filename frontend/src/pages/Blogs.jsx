@@ -5,7 +5,7 @@ import SEO from "@/components/SEO";
 import { useI18n } from "@/context/I18nContext";
 import { FaCalendarAlt, FaNewspaper, FaChevronRight } from "react-icons/fa";
 
-const BACKEND = process.env.REACT_APP_BACKEND_URL;
+import { BACKEND_URL as BACKEND } from "@/lib/api";
 
 const Blogs = () => {
   const { lang } = useI18n();

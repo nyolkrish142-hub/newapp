@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import KeyEditor from "./KeyEditor";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { API } from "@/lib/api";
 
 const SEO_PAGES = [
   { key: "seo:vacancies", title: "Vacancy Homepage (/)", hint: "Shown on / — the highest-traffic page. Target job-seeker keywords like 'sarkari naukri', 'admit card', state names." },

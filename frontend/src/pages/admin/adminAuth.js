@@ -6,7 +6,7 @@
 import axios from "axios";
 
 const KEY = "he_admin_token_v1";
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+import { BACKEND_URL } from "@/lib/api";
 export const ADMIN_API = `${BACKEND_URL}/api`;
 
 export const getAdminToken = () => {

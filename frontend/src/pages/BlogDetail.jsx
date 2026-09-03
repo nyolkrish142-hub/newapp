@@ -6,7 +6,7 @@ import { useI18n } from "@/context/I18nContext";
 import { FaWhatsapp, FaCalendarAlt, FaUser, FaNewspaper } from "react-icons/fa";
 import { WHATSAPP_CHANNEL_URL } from "@/lib/whatsapp";
 
-const BACKEND = process.env.REACT_APP_BACKEND_URL;
+import { BACKEND_URL as BACKEND } from "@/lib/api";
 
 const BlogDetail = () => {
   const { slug } = useParams();
