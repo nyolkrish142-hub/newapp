@@ -116,7 +116,7 @@ const AdminPanel = () => {
           const Icon = t.icon;
           return (
             <button key={t.id} onClick={() => setTab(t.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition ${tab === t.id ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30" : "text-slate-400 hover:text-white"}`}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition ${tab === t.id ? "bg-blue-500/15 text-blue-300 border border-blue-500/30" : "text-slate-400 hover:text-white"}`}
               data-testid={`admin-tab-${t.id}`}>
               <Icon /> {t.label}
             </button>
@@ -130,7 +130,7 @@ const AdminPanel = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { k: "users", label: lang === "hi" ? "कुल यूज़र्स" : "Total Users", icon: FaUsers, color: "from-sky-500 to-sky-700" },
-              { k: "solar_apps", label: lang === "hi" ? "सोलर आवेदन" : "Solar Applications", icon: FaSolarPanel, color: "from-emerald-500 to-emerald-700" },
+              { k: "solar_apps", label: lang === "hi" ? "सोलर आवेदन" : "Solar Applications", icon: FaSolarPanel, color: "from-blue-500 to-blue-700" },
               { k: "loan_apps", label: lang === "hi" ? "लोन आवेदन" : "Loan Applications", icon: FaMoneyBillWave, color: "from-amber-500 to-amber-700" },
               { k: "contacts", label: lang === "hi" ? "संपर्क संदेश" : "Contact Msgs", icon: FaEnvelope, color: "from-purple-500 to-purple-700" },
             ].map((s, i) => {
@@ -148,17 +148,17 @@ const AdminPanel = () => {
           </div>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="glass p-5">
-              <h3 className="font-semibold text-white mb-3 flex items-center gap-2"><FaSolarPanel className="text-emerald-400" /> {lang === "hi" ? "सोलर स्थिति" : "Solar Status"}</h3>
+              <h3 className="font-semibold text-white mb-3 flex items-center gap-2"><FaSolarPanel className="text-blue-400" /> {lang === "hi" ? "सोलर स्थिति" : "Solar Status"}</h3>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between"><span className="text-slate-400 flex items-center gap-2"><FaClock className="text-amber-400" /> {lang === "hi" ? "लंबित" : "Pending"}</span><b className="text-amber-300">{stats.solar_pending}</b></div>
-                <div className="flex justify-between"><span className="text-slate-400 flex items-center gap-2"><FaCheckCircle className="text-emerald-400" /> {lang === "hi" ? "स्वीकृत" : "Approved"}</span><b className="text-emerald-300">{stats.solar_approved}</b></div>
+                <div className="flex justify-between"><span className="text-slate-400 flex items-center gap-2"><FaCheckCircle className="text-blue-400" /> {lang === "hi" ? "स्वीकृत" : "Approved"}</span><b className="text-blue-300">{stats.solar_approved}</b></div>
               </div>
             </div>
             <div className="glass p-5">
               <h3 className="font-semibold text-white mb-3 flex items-center gap-2"><FaMoneyBillWave className="text-amber-400" /> {lang === "hi" ? "लोन स्थिति" : "Loan Status"}</h3>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between"><span className="text-slate-400 flex items-center gap-2"><FaClock className="text-amber-400" /> {lang === "hi" ? "लंबित" : "Pending"}</span><b className="text-amber-300">{stats.loan_pending}</b></div>
-                <div className="flex justify-between"><span className="text-slate-400 flex items-center gap-2"><FaCheckCircle className="text-emerald-400" /> {lang === "hi" ? "स्वीकृत" : "Approved"}</span><b className="text-emerald-300">{stats.loan_approved}</b></div>
+                <div className="flex justify-between"><span className="text-slate-400 flex items-center gap-2"><FaCheckCircle className="text-blue-400" /> {lang === "hi" ? "स्वीकृत" : "Approved"}</span><b className="text-blue-300">{stats.loan_approved}</b></div>
               </div>
             </div>
           </div>
@@ -200,7 +200,7 @@ const AdminPanel = () => {
               <tbody>
                 {(tab === "solar" ? solar : loan).map(a => (
                   <tr key={a.id} data-testid={`admin-${tab}-row-${a.ref_no}`}>
-                    <td className="font-mono font-bold text-emerald-400">{a.ref_no}</td>
+                    <td className="font-mono font-bold text-blue-400">{a.ref_no}</td>
                     <td className="font-semibold text-white">{a.full_name}</td>
                     <td>{a.phone}</td>
                     <td className="text-xs">{tab === "solar" ? a.application_type : a.loan_type}</td>
@@ -232,7 +232,7 @@ const AdminPanel = () => {
               <tbody>
                 {irrigation.map(a => (
                   <tr key={a.id} data-testid={`admin-irrigation-row-${a.ref_no}`}>
-                    <td className="font-mono font-bold text-emerald-400">{a.ref_no}</td>
+                    <td className="font-mono font-bold text-blue-400">{a.ref_no}</td>
                     <td>{lang === "hi" ? a.scheme_hi : a.scheme_en}</td>
                     <td className="font-semibold text-white">{a.full_name}</td>
                     <td>{a.village}, {a.district}</td>
@@ -262,7 +262,7 @@ const AdminPanel = () => {
               <tbody>
                 {csc.map(a => (
                   <tr key={a.id} data-testid={`admin-csc-row-${a.ref_no}`}>
-                    <td className="font-mono font-bold text-emerald-400">{a.ref_no}</td>
+                    <td className="font-mono font-bold text-blue-400">{a.ref_no}</td>
                     <td>{lang === "hi" ? a.service_hi : a.service_en}{a.custom_service ? ` — ${a.custom_service}` : ""}</td>
                     <td className="font-semibold text-white">{a.full_name}</td>
                     <td>{a.phone}</td>
@@ -290,7 +290,7 @@ const AdminPanel = () => {
               <div className="flex items-start justify-between gap-3 mb-2">
                 <div>
                   <div className="font-semibold text-white">{c.name} <span className="text-slate-500 text-xs">· {c.email} · {c.phone || "-"}</span></div>
-                  <div className="text-sm text-emerald-400 font-medium mt-0.5">{c.subject}</div>
+                  <div className="text-sm text-blue-400 font-medium mt-0.5">{c.subject}</div>
                 </div>
                 <div className="text-xs text-slate-400">{new Date(c.created_at).toLocaleString()}</div>
               </div>
@@ -305,7 +305,7 @@ const AdminPanel = () => {
       {tab === "notices" && (
         <div className="space-y-6" data-testid="admin-notices-cms">
           <form onSubmit={addNotice} className="glass p-5" data-testid="notice-add-form">
-            <h3 className="font-semibold text-white mb-3 flex items-center gap-2"><FaPlus className="text-emerald-400" /> {lang === "hi" ? "नई सूचना जोड़ें" : "Add New Notice"}</h3>
+            <h3 className="font-semibold text-white mb-3 flex items-center gap-2"><FaPlus className="text-blue-400" /> {lang === "hi" ? "नई सूचना जोड़ें" : "Add New Notice"}</h3>
             <div className="grid md:grid-cols-2 gap-3">
               <div><label className="label">Title (Hindi)</label><input required className="input" value={newNotice.title_hi} onChange={(e) => setNewNotice(v => ({ ...v, title_hi: e.target.value }))} data-testid="notice-title-hi" /></div>
               <div><label className="label">Title (English)</label><input required className="input" value={newNotice.title_en} onChange={(e) => setNewNotice(v => ({ ...v, title_en: e.target.value }))} data-testid="notice-title-en" /></div>

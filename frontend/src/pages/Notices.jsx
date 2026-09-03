@@ -13,8 +13,8 @@ const Notices = () => {
       <h1 className="section-title !text-3xl">{lang === "hi" ? "सूचना बोर्ड" : "Notice Board"}</h1>
       <div className="mt-8 space-y-3">
         {items.map((n, i) => (
-          <div key={n.id} className="glass p-4 flex items-start gap-4 hover:border-emerald-500/40 transition" data-testid={`notice-item-${i}`}>
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${n.type === "important" ? "bg-amber-500/10 text-amber-400 border border-amber-500/30" : "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30"}`}>
+          <div key={n.id} className="glass p-4 flex items-start gap-4 hover:border-blue-500/40 transition" data-testid={`notice-item-${i}`}>
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${n.type === "important" ? "bg-amber-500/10 text-amber-400 border border-amber-500/30" : "bg-blue-500/10 text-blue-400 border border-blue-500/30"}`}>
               <FaBullhorn />
             </div>
             <div className="flex-1">

@@ -53,7 +53,7 @@ const MicroIrrigation = () => {
     <div className="max-w-7xl mx-auto px-4 py-10" data-testid="irrigation-page">
       {/* Hero banner */}
       <div className="glass-strong relative overflow-hidden mb-8 p-6 md:p-10" data-testid="irrigation-hero">
-        <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+        <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl pointer-events-none"></div>
         <div className="absolute -left-24 -bottom-24 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none"></div>
         <div className="relative">
           <div className="section-eyebrow">Government Subsidy Schemes</div>
@@ -91,7 +91,7 @@ const MicroIrrigation = () => {
               </div>
               <div className="p-5">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center"><Icon /></div>
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center"><Icon /></div>
                   <div>
                     <div className="font-display font-bold text-lg text-white">{lang === "hi" ? s.hi : s.en}</div>
                     <div className="text-xs text-amber-400 font-semibold">{lang === "hi" ? s.subsidy_hi : s.subsidy_en}</div>

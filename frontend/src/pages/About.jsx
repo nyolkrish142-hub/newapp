@@ -12,7 +12,7 @@ const About = () => {
           <img src="https://images.unsplash.com/photo-1609252509027-3928a66302fd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwyfHxydXJhbCUyMGluZGlhJTIwZmFybWVyJTIwd29ya2luZ3xlbnwwfHx8fDE3ODUzODc0NDV8MA&ixlib=rb-4.1.0&q=85" alt="Rural India" className="rounded-2xl w-full border border-white/10" />
         </div>
         <div className="glass p-6 space-y-3 text-slate-300 leading-relaxed text-sm">
-          <p className="font-display font-semibold text-emerald-400 text-lg">
+          <p className="font-display font-semibold text-blue-400 text-lg">
             {t({ hi: "एचआर डिजिटल सर्विसेज – कागदाना, सिरसा", en: "HR Digital Services – Kagdana, Sirsa" })}
           </p>
           <p>{t({ hi: "हम सिरसा जिले की एक निजी, विश्वसनीय संस्था हैं जो सरकार अनुमोदित रूफटॉप सोलर वेंडर के रूप में परामर्श, साइट सर्वे और इंस्टॉलेशन सहायता प्रदान करती है।", en: "We are a private, trusted business in Sirsa district — a Govt-approved rooftop solar vendor providing consultation, site survey and installation assistance." })}</p>
@@ -24,7 +24,7 @@ const About = () => {
               { hi: "5+ वर्षों का अनुभव", en: "5+ years of experience" },
               { hi: "पारदर्शी कोटेशन · कोई एडवांस नहीं", en: "Transparent quotation · No advance" },
             ].map((b, i) => (
-              <li key={i} className="flex items-center gap-2 text-slate-300"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> {lang === "hi" ? b.hi : b.en}</li>
+              <li key={i} className="flex items-center gap-2 text-slate-300"><span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span> {lang === "hi" ? b.hi : b.en}</li>
             ))}
           </ul>
 

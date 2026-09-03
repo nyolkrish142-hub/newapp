@@ -38,7 +38,7 @@ const WhatsAppSummaryCard = ({ summary, vacancy, lang = "hi" }) => {
           {copied ? <FaCheck /> : <FaCopy />} {copied ? (lang === "hi" ? "कॉपी हो गया" : "Copied") : (lang === "hi" ? "कॉपी करें" : "Copy")}
         </button>
       </div>
-      <pre className="whitespace-pre-wrap font-mono text-sm text-emerald-100 bg-black/30 rounded-xl p-4 leading-relaxed">{text}</pre>
+      <pre className="whitespace-pre-wrap font-mono text-sm text-blue-100 bg-black/30 rounded-xl p-4 leading-relaxed">{text}</pre>
       <a
         href={WHATSAPP_CHANNEL_URL}
         target="_blank"

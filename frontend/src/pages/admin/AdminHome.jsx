@@ -5,15 +5,15 @@ import { FaSearch, FaEdit, FaChevronRight, FaBriefcase, FaNewspaper, FaFileAlt }
 const Card = ({ to, icon: Icon, title, desc, testid }) => (
   <Link
     to={to}
-    className="group block rounded-2xl bg-white border border-slate-200 p-5 hover:border-emerald-400 hover:shadow-lg transition-all"
+    className="group block rounded-2xl bg-white border border-slate-200 p-5 hover:border-blue-400 hover:shadow-lg transition-all"
     data-testid={testid}
   >
     <div className="flex items-center gap-3 mb-3">
-      <div className="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 grid place-items-center">
+      <div className="w-10 h-10 rounded-lg bg-blue-100 text-blue-700 grid place-items-center">
         <Icon />
       </div>
       <h3 className="font-semibold text-slate-900">{title}</h3>
-      <FaChevronRight className="ml-auto text-slate-300 group-hover:text-emerald-600 transition-colors" />
+      <FaChevronRight className="ml-auto text-slate-300 group-hover:text-blue-600 transition-colors" />
     </div>
     <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
   </Link>

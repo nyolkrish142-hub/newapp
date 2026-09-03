@@ -57,7 +57,7 @@ const Dashboard = () => {
   };
 
   const stats = [
-    { icon: FaSolarPanel, label: lang === "hi" ? "सोलर आवेदन" : "Solar Applications", val: solar.length, color: "from-emerald-500 to-emerald-700" },
+    { icon: FaSolarPanel, label: lang === "hi" ? "सोलर आवेदन" : "Solar Applications", val: solar.length, color: "from-blue-500 to-blue-700" },
     { icon: FaMoneyBillWave, label: lang === "hi" ? "लोन आवेदन" : "Loan Applications", val: loan.length, color: "from-amber-500 to-amber-700" },
     { icon: FaFileAlt, label: lang === "hi" ? "कुल आवेदन" : "Total Applications", val: solar.length + loan.length, color: "from-sky-500 to-sky-700" },
     { icon: FaUserCircle, label: lang === "hi" ? "प्रोफ़ाइल" : "Profile", val: (user && user.name) || "-", color: "from-purple-500 to-purple-700", isText: true },
@@ -96,7 +96,7 @@ const Dashboard = () => {
 
       <div className="glass p-4">
         <div className="flex gap-2 border-b border-white/5 mb-4 pb-1">
-          <button className={`px-4 py-2 font-semibold text-sm rounded-lg transition ${tab === "solar" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30" : "text-slate-400 hover:text-white"}`} onClick={() => setTab("solar")} data-testid="tab-solar">
+          <button className={`px-4 py-2 font-semibold text-sm rounded-lg transition ${tab === "solar" ? "bg-blue-500/10 text-blue-400 border border-blue-500/30" : "text-slate-400 hover:text-white"}`} onClick={() => setTab("solar")} data-testid="tab-solar">
             <FaSolarPanel className="inline mr-1" /> {lang === "hi" ? "सोलर" : "Solar"} <span className="ml-1 text-xs opacity-70">({solar.length})</span>
           </button>
           <button className={`px-4 py-2 font-semibold text-sm rounded-lg transition ${tab === "loan" ? "bg-amber-500/10 text-amber-400 border border-amber-500/30" : "text-slate-400 hover:text-white"}`} onClick={() => setTab("loan")} data-testid="tab-loan">
@@ -128,7 +128,7 @@ const Dashboard = () => {
               <tbody>
                 {data.map(a => (
                   <tr key={a.id} data-testid={`app-row-${a.ref_no}`}>
-                    <td className="font-mono font-bold text-emerald-400">{a.ref_no}</td>
+                    <td className="font-mono font-bold text-blue-400">{a.ref_no}</td>
                     <td>{tab === "solar" ? a.application_type : a.loan_type}</td>
                     <td>{a.full_name}</td>
                     <td><span className={badgeCls(a.status)}>{a.status}</span></td>

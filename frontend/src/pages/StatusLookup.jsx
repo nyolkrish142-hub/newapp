@@ -45,12 +45,12 @@ const StatusLookup = () => {
       {err && <div className="mt-6 glass p-4 border-red-500/40 !bg-red-500/5 flex items-center gap-2 text-red-400" data-testid="status-error"><FaTimesCircle /> {err}</div>}
 
       {result && (
-        <div className="mt-6 glass p-6 border-emerald-500/40" data-testid="status-result">
+        <div className="mt-6 glass p-6 border-blue-500/40" data-testid="status-result">
           <div className="flex items-center gap-3 mb-4">
-            <FaCheckCircle className="text-emerald-400 text-2xl" />
+            <FaCheckCircle className="text-blue-400 text-2xl" />
             <div>
               <div className="text-[10px] uppercase tracking-widest text-slate-400">Reference Number</div>
-              <div className="font-mono font-bold text-emerald-400 text-xl">{result.ref_no}</div>
+              <div className="font-mono font-bold text-blue-400 text-xl">{result.ref_no}</div>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3 text-sm">

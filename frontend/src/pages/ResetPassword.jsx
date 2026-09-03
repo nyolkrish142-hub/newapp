@@ -52,7 +52,7 @@ const ResetPassword = () => {
               <div className="input-icon-wrap">
                 <FaLock className="icon" />
                 <input required minLength={6} type={showPw ? "text" : "password"} className="input pr-10" value={password} onChange={(e) => setPassword(e.target.value)} data-testid="reset-password-input" />
-                <button type="button" onClick={() => setShowPw(v => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-400">
+                <button type="button" onClick={() => setShowPw(v => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-400">
                   {showPw ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>

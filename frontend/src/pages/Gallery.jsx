@@ -18,7 +18,7 @@ const Gallery = () => {
         {[...IMAGES, ...IMAGES].map((src, i) => (
           <div key={i} className="rounded-2xl overflow-hidden aspect-square group cursor-pointer border border-white/10 relative" data-testid={`gallery-item-${i}`}>
             <img src={src} alt={`gallery-${i}`} className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
-            <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/60 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
           </div>
         ))}
       </div>

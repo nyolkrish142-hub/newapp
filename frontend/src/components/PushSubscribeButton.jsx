@@ -26,7 +26,7 @@ const PushSubscribeButton = ({ lang = "hi", className = "" }) => {
 
   if (permission === "granted") {
     return (
-      <span className={`inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-300 ${className}`} data-testid="push-subscribe-status">
+      <span className={`inline-flex items-center gap-1.5 text-[11px] font-bold text-blue-300 ${className}`} data-testid="push-subscribe-status">
         <FaBell /> {lang === "hi" ? "Push Alerts ON ✓" : "Push Alerts ON ✓"}
       </span>
     );

@@ -69,7 +69,7 @@ const AdminResumes = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="e.g. Sarkari Job CV Format"
-            className="mt-1 w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-emerald-500 outline-none text-sm bg-white"
+            className="mt-1 w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-blue-500 outline-none text-sm bg-white"
             data-testid="admin-cv-name"
           />
         </label>
@@ -79,14 +79,14 @@ const AdminResumes = () => {
             type="file"
             accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp"
             onChange={(e) => setFile(e.target.files?.[0] || null)}
-            className="mt-1 w-full text-sm text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
+            className="mt-1 w-full text-sm text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
             data-testid="admin-cv-file"
           />
         </label>
         <button
           type="submit"
           disabled={uploading}
-          className="px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white text-sm font-semibold inline-flex items-center justify-center gap-2 shrink-0"
+          className="px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white text-sm font-semibold inline-flex items-center justify-center gap-2 shrink-0"
           data-testid="admin-cv-upload-btn"
         >
           <FaUpload /> {uploading ? "Uploading…" : "Upload"}
@@ -101,7 +101,7 @@ const AdminResumes = () => {
         ) : (
           items.map((t) => (
             <div key={t.id} className="flex items-center gap-4 px-5 py-4 hover:bg-slate-50/60" data-testid={`admin-resume-row-${t.id}`}>
-              <span className="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 grid place-items-center shrink-0"><FaFileAlt /></span>
+              <span className="w-10 h-10 rounded-lg bg-blue-100 text-blue-700 grid place-items-center shrink-0"><FaFileAlt /></span>
               <div className="flex-1 min-w-0">
                 <p className="font-semibold text-slate-900 truncate">{t.name}</p>
                 <p className="text-xs text-slate-400 truncate">{t.filename}{t.size ? ` · ${(t.size / 1024).toFixed(0)} KB` : ""}</p>

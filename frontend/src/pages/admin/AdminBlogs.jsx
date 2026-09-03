@@ -4,7 +4,7 @@ import { FaPlus, FaEdit, FaTrash, FaTimes, FaSave, FaBold, FaItalic, FaHeading, 
 import { adminApi } from "./adminAuth";
 
 import { BACKEND_URL as BACKEND } from "@/lib/api";
-const inputCls = "w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-emerald-500 outline-none text-sm text-slate-900 bg-white";
+const inputCls = "w-full px-3 py-2.5 rounded-lg border border-slate-300 focus:border-blue-500 outline-none text-sm text-slate-900 bg-white";
 const EMPTY = { title: "", excerpt: "", content: "", status: "published" };
 
 const AdminBlogs = () => {
@@ -105,7 +105,7 @@ const AdminBlogs = () => {
         </div>
         <button
           onClick={openCreate}
-          className="px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold inline-flex items-center gap-2 shadow"
+          className="px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold inline-flex items-center gap-2 shadow"
           data-testid="admin-add-blog-btn"
         >
           <FaPlus /> New Blog
@@ -130,7 +130,7 @@ const AdminBlogs = () => {
                 <p className="text-xs text-slate-400 truncate">{b.excerpt || b.slug}</p>
               </div>
               <span className={`text-xs font-bold px-2 py-1 rounded-full shrink-0 ${b.status === "published" ? "text-green-700 bg-green-50" : "text-slate-500 bg-slate-100"}`}>{b.status}</span>
-              <a href={`/blogs/${b.slug}`} target="_blank" rel="noreferrer" className="text-xs font-semibold text-emerald-700 hover:underline shrink-0">View</a>
+              <a href={`/blogs/${b.slug}`} target="_blank" rel="noreferrer" className="text-xs font-semibold text-blue-700 hover:underline shrink-0">View</a>
               <button onClick={() => openEdit(b)} className="p-2 rounded-lg text-slate-500 hover:bg-slate-100" data-testid={`admin-edit-blog-${b.id}`}><FaEdit /></button>
               <button onClick={() => remove(b)} className="p-2 rounded-lg text-red-500 hover:bg-red-50" data-testid={`admin-delete-blog-${b.id}`}><FaTrash /></button>
             </div>
@@ -147,7 +147,7 @@ const AdminBlogs = () => {
                 <button type="button" onClick={() => setOpen(false)} className="px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-50 inline-flex items-center gap-1.5" data-testid="admin-blog-cancel">
                   <FaTimes /> Cancel
                 </button>
-                <button type="submit" disabled={busy} className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white text-xs font-semibold inline-flex items-center gap-1.5" data-testid="admin-blog-save">
+                <button type="submit" disabled={busy} className="px-4 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white text-xs font-semibold inline-flex items-center gap-1.5" data-testid="admin-blog-save">
                   <FaSave /> {busy ? "Saving…" : editing ? "Update" : "Publish"}
                 </button>
               </div>
@@ -167,7 +167,7 @@ const AdminBlogs = () => {
                 <div
                   ref={editorRef}
                   contentEditable
-                  className="min-h-[260px] border border-slate-300 rounded-b-lg px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-emerald-500 bg-white leading-relaxed"
+                  className="min-h-[260px] border border-slate-300 rounded-b-lg px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-blue-500 bg-white leading-relaxed"
                   data-testid="admin-blog-content-editor"
                 />
               </div>
@@ -179,7 +179,7 @@ const AdminBlogs = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => setImage(e.target.files?.[0] || null)}
-                    className="mt-1 w-full text-sm text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
+                    className="mt-1 w-full text-sm text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     data-testid="admin-blog-image"
                   />
                 </label>

@@ -75,7 +75,7 @@ const SchemesInfo = () => {
                   const Icon = b.icon;
                   return (
                     <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
-                      <Icon className="text-emerald-400 mt-0.5 shrink-0 text-[13px]" />
+                      <Icon className="text-blue-400 mt-0.5 shrink-0 text-[13px]" />
                       <span>{hi ? b.hi : b.en}</span>
                     </li>
                   );
@@ -115,14 +115,14 @@ const SchemesInfo = () => {
 
         {/* ─────── Financing Information ─────── */}
         <div className="glass p-6 md:p-7 relative overflow-hidden" data-testid="loan-info-card">
-          <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+          <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
           <div className="relative">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-xl">
+              <div className="w-11 h-11 rounded-xl bg-blue-500/15 border border-blue-500/40 text-blue-400 flex items-center justify-center text-xl">
                 <FaMoneyBillWave />
               </div>
               <div>
-                <div className="text-[10px] uppercase text-emerald-400 font-semibold tracking-widest">
+                <div className="text-[10px] uppercase text-blue-400 font-semibold tracking-widest">
                   {hi ? "जानकारी" : "Information"}
                 </div>
                 <h3 className="text-lg md:text-xl font-bold text-white">
@@ -147,7 +147,7 @@ const SchemesInfo = () => {
                   const Icon = f.icon;
                   return (
                     <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
-                      <Icon className="text-emerald-400 mt-0.5 shrink-0 text-[13px]" />
+                      <Icon className="text-blue-400 mt-0.5 shrink-0 text-[13px]" />
                       <span>{hi ? f.hi : f.en}</span>
                     </li>
                   );
@@ -156,7 +156,7 @@ const SchemesInfo = () => {
             </div>
 
             {/* Compliance note */}
-            <div className="p-3 rounded-lg bg-emerald-500/[0.08] border border-emerald-500/30 text-[11px] text-emerald-200 mb-5 leading-relaxed" data-testid="loan-info-disclaimer">
+            <div className="p-3 rounded-lg bg-blue-500/[0.08] border border-blue-500/30 text-[11px] text-blue-200 mb-5 leading-relaxed" data-testid="loan-info-disclaimer">
               <b>{hi ? "अस्वीकरण: " : "Disclaimer: "}</b>
               {hi
                 ? "वित्तीय सुविधा की उपलब्धता, ब्याज दर, पात्रता एवं शर्तें संबंधित ऋणदाता की वर्तमान नीति और अनुमोदन के अधीन हैं। एचआर डिजिटल सर्विसेज कोई ऋण मंज़ूरी की गारंटी नहीं देता।"

@@ -14,11 +14,11 @@ const Footer = () => {
       <div className="info-bar">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-5 gap-6">
           <div className="info-bar-item" data-testid="info-office-hours">
-            <h5><FaClock className="text-emerald-400" /> {lang === "hi" ? "कार्यालय समय" : "Office Hours"}</h5>
+            <h5><FaClock className="text-blue-400" /> {lang === "hi" ? "कार्यालय समय" : "Office Hours"}</h5>
             <p>{lang === "hi" ? "सोम–शनि · सुबह 9 – शाम 7" : "Mon–Sat · 9:00 AM – 7:00 PM"}</p>
           </div>
           <div className="info-bar-item" data-testid="info-helpline">
-            <h5><FaPhone className="text-emerald-400" /> {lang === "hi" ? "हेल्पलाइन" : "Helpline"}</h5>
+            <h5><FaPhone className="text-blue-400" /> {lang === "hi" ? "हेल्पलाइन" : "Helpline"}</h5>
             <div className="flex flex-col gap-1">
               <div className="text-white text-sm font-semibold">Devender Saharan</div>
               <div className="flex flex-wrap items-center gap-1">
@@ -28,11 +28,11 @@ const Footer = () => {
             </div>
           </div>
           <div className="info-bar-item" data-testid="info-last-update">
-            <h5><FaBell className="text-emerald-400" /> {lang === "hi" ? "अंतिम अपडेट" : "Last Update"}</h5>
+            <h5><FaBell className="text-blue-400" /> {lang === "hi" ? "अंतिम अपडेट" : "Last Update"}</h5>
             <p>30 Jul, 2026 · 07:00 IST</p>
           </div>
           <div className="info-bar-item" data-testid="info-social">
-            <h5><FaLink className="text-emerald-400" /> {lang === "hi" ? "जुड़े रहें" : "Stay Connected"}</h5>
+            <h5><FaLink className="text-blue-400" /> {lang === "hi" ? "जुड़े रहें" : "Stay Connected"}</h5>
             <div className="flex gap-2 mt-1">
               <a href="#" className="social-icon" aria-label="Twitter/X"><FaTwitter /></a>
               <a href="#" className="social-icon" aria-label="Facebook"><FaFacebook /></a>
@@ -44,8 +44,8 @@ const Footer = () => {
             </a>
           </div>
           <div className="info-bar-item text-right" data-testid="info-version">
-            <h5 className="justify-end"><span className="text-emerald-400">v</span> Version</h5>
-            <p>2.5.1 · <span className="chip !bg-emerald-500/15 !border-emerald-500/40 !text-emerald-300">Stable</span></p>
+            <h5 className="justify-end"><span className="text-blue-400">v</span> Version</h5>
+            <p>2.5.1 · <span className="chip !bg-blue-500/15 !border-blue-500/40 !text-blue-300">Stable</span></p>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@ const Footer = () => {
               </div>
               <div>
                 <div className="font-display text-lg font-bold text-white">{t(S.brand)}</div>
-                <div className="text-[10px] text-emerald-400/80 tracking-widest uppercase font-semibold mt-0.5">{lang === "hi" ? "सरकारी नौकरी · सोलर सेवाएँ" : "Govt Jobs & Solar Services"}</div>
+                <div className="text-[10px] text-blue-400/80 tracking-widest uppercase font-semibold mt-0.5">{lang === "hi" ? "सरकारी नौकरी · सोलर सेवाएँ" : "Govt Jobs & Solar Services"}</div>
               </div>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">
@@ -74,22 +74,22 @@ const Footer = () => {
           <div>
             <div className="section-eyebrow">Quick Links</div>
             <ul className="space-y-2 text-sm mt-2">
-              <li><Link to="/" className="text-slate-300 hover:text-emerald-400" data-testid="footer-jobs-link">→ {t(S.nav.vacancies)}</Link></li>
-              <li><Link to="/solar" className="text-slate-300 hover:text-emerald-400" data-testid="footer-solar-link">→ {t(S.nav.solar_services)}</Link></li>
-              <li><Link to="/blogs" className="text-slate-300 hover:text-emerald-400" data-testid="footer-blogs-link">→ {t(S.nav.blogs)}</Link></li>
-              <li><Link to="/downloads" className="text-slate-300 hover:text-emerald-400" data-testid="footer-cv-templates-link">→ {lang === "hi" ? "Resume / CV Templates" : "Resume / CV Templates"}</Link></li>
-              <li><Link to="/contact" className="text-slate-300 hover:text-emerald-400">→ {t(S.nav.contact)}</Link></li>
+              <li><Link to="/" className="text-slate-300 hover:text-blue-400" data-testid="footer-jobs-link">→ {t(S.nav.vacancies)}</Link></li>
+              <li><Link to="/solar" className="text-slate-300 hover:text-blue-400" data-testid="footer-solar-link">→ {t(S.nav.solar_services)}</Link></li>
+              <li><Link to="/blogs" className="text-slate-300 hover:text-blue-400" data-testid="footer-blogs-link">→ {t(S.nav.blogs)}</Link></li>
+              <li><Link to="/downloads" className="text-slate-300 hover:text-blue-400" data-testid="footer-cv-templates-link">→ {lang === "hi" ? "Resume / CV Templates" : "Resume / CV Templates"}</Link></li>
+              <li><Link to="/contact" className="text-slate-300 hover:text-blue-400">→ {t(S.nav.contact)}</Link></li>
             </ul>
           </div>
 
           <div>
             <div className="section-eyebrow">Resources</div>
             <ul className="space-y-2 text-sm mt-2">
-              <li><Link to="/notices" className="text-slate-300 hover:text-emerald-400">→ {t(S.nav.notices)}</Link></li>
-              <li><Link to="/downloads" className="text-slate-300 hover:text-emerald-400">→ {t(S.nav.downloads)}</Link></li>
-              <li><Link to="/faq" className="text-slate-300 hover:text-emerald-400">→ {t(S.nav.faq)}</Link></li>
-              <li><a href="https://pmsuryaghar.gov.in" target="_blank" rel="noreferrer" className="text-slate-300 hover:text-emerald-400">→ PM Surya Ghar (Official) ↗</a></li>
-              <li><a href="https://mnre.gov.in" target="_blank" rel="noreferrer" className="text-slate-300 hover:text-emerald-400">→ MNRE Official ↗</a></li>
+              <li><Link to="/notices" className="text-slate-300 hover:text-blue-400">→ {t(S.nav.notices)}</Link></li>
+              <li><Link to="/downloads" className="text-slate-300 hover:text-blue-400">→ {t(S.nav.downloads)}</Link></li>
+              <li><Link to="/faq" className="text-slate-300 hover:text-blue-400">→ {t(S.nav.faq)}</Link></li>
+              <li><a href="https://pmsuryaghar.gov.in" target="_blank" rel="noreferrer" className="text-slate-300 hover:text-blue-400">→ PM Surya Ghar (Official) ↗</a></li>
+              <li><a href="https://mnre.gov.in" target="_blank" rel="noreferrer" className="text-slate-300 hover:text-blue-400">→ MNRE Official ↗</a></li>
             </ul>
           </div>
 
@@ -97,14 +97,14 @@ const Footer = () => {
             <div className="section-eyebrow">Contact</div>
             <ul className="space-y-2.5 text-sm mt-2">
               <li className="flex items-start gap-2 text-slate-300"><FaMapMarkerAlt className="mt-1 text-amber-400 shrink-0" /> <span>200 Mtr From Bus Stand, Begu–Bhadra Road, Kagdana, Sirsa, Haryana</span></li>
-              <li className="text-[10px] text-emerald-400 uppercase tracking-widest mt-2">Field Officers</li>
-              <li className="flex items-center gap-2 text-slate-300"><FaPhone className="text-amber-400" /> <a href="tel:9813664230" className="hover:text-emerald-400">Sanjay Fageria · 98136-64230</a></li>
-              <li className="flex items-center gap-2 text-slate-300"><FaPhone className="text-amber-400" /> <a href="tel:9097410008" className="hover:text-emerald-400">Anoop Beniwal · 90974-10008</a></li>
-              <li className="text-[10px] text-emerald-400 uppercase tracking-widest mt-2">Office</li>
-              <li className="flex items-center gap-2 text-slate-300"><FaPhone className="text-amber-400" /> <a href="tel:9992120628" className="hover:text-emerald-400">99921-20628</a> · <a href="tel:9541435035" className="hover:text-emerald-400">95414-35035</a></li>
-              <li className="flex items-center gap-2 text-slate-300"><FaPhone className="text-amber-400" /> <a href="tel:8167862016" className="hover:text-emerald-400">8167862016</a></li>
-              <li className="flex items-center gap-2 text-slate-300"><FaWhatsapp className="text-emerald-400" /> <a href="https://wa.me/918168762016" target="_blank" rel="noreferrer" className="hover:text-emerald-400">8168762016</a></li>
-              <li className="flex items-start gap-2 text-slate-300"><FaEnvelope className="mt-1 text-amber-400 shrink-0" /> <a href="mailto:haryanaenterpriseskagdana@gmail.com" className="break-all hover:text-emerald-400">haryanaenterpriseskagdana@gmail.com</a></li>
+              <li className="text-[10px] text-blue-400 uppercase tracking-widest mt-2">Field Officers</li>
+              <li className="flex items-center gap-2 text-slate-300"><FaPhone className="text-amber-400" /> <a href="tel:9813664230" className="hover:text-blue-400">Sanjay Fageria · 98136-64230</a></li>
+              <li className="flex items-center gap-2 text-slate-300"><FaPhone className="text-amber-400" /> <a href="tel:9097410008" className="hover:text-blue-400">Anoop Beniwal · 90974-10008</a></li>
+              <li className="text-[10px] text-blue-400 uppercase tracking-widest mt-2">Office</li>
+              <li className="flex items-center gap-2 text-slate-300"><FaPhone className="text-amber-400" /> <a href="tel:9992120628" className="hover:text-blue-400">99921-20628</a> · <a href="tel:9541435035" className="hover:text-blue-400">95414-35035</a></li>
+              <li className="flex items-center gap-2 text-slate-300"><FaPhone className="text-amber-400" /> <a href="tel:8167862016" className="hover:text-blue-400">8167862016</a></li>
+              <li className="flex items-center gap-2 text-slate-300"><FaWhatsapp className="text-blue-400" /> <a href="https://wa.me/918168762016" target="_blank" rel="noreferrer" className="hover:text-blue-400">8168762016</a></li>
+              <li className="flex items-start gap-2 text-slate-300"><FaEnvelope className="mt-1 text-amber-400 shrink-0" /> <a href="mailto:haryanaenterpriseskagdana@gmail.com" className="break-all hover:text-blue-400">haryanaenterpriseskagdana@gmail.com</a></li>
             </ul>
           </div>
         </div>

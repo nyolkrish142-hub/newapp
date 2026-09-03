@@ -64,7 +64,7 @@ const DocumentUploader = ({ refNo, onChange, requireAuth = true, kinds = DOC_KIN
     <div className="glass p-4" data-testid="document-uploader">
       {!compact && (
         <div className="flex items-center gap-2 mb-3">
-          <FaCloudUploadAlt className="text-emerald-400 text-xl" />
+          <FaCloudUploadAlt className="text-blue-400 text-xl" />
           <div className="font-semibold text-white">{lang === "hi" ? "दस्तावेज़ अपलोड" : "Upload Documents"}</div>
         </div>
       )}
@@ -86,10 +86,10 @@ const DocumentUploader = ({ refNo, onChange, requireAuth = true, kinds = DOC_KIN
             <div key={i} className="flex items-center justify-between p-2 rounded-lg bg-white/[0.03] border border-white/5">
               <div className="flex items-center gap-2 min-w-0">
                 <FaFilePdf className="text-red-400 shrink-0" />
-                <span className="text-xs text-emerald-400 uppercase tracking-widest font-semibold shrink-0">{kindLabel(f.kind)}</span>
+                <span className="text-xs text-blue-400 uppercase tracking-widest font-semibold shrink-0">{kindLabel(f.kind)}</span>
                 <span className="text-xs text-slate-300 truncate">{f.original_name}</span>
                 <span className="text-[10px] text-slate-500 shrink-0">{(f.size / 1024).toFixed(1)} KB</span>
-                <FaCheckCircle className="text-emerald-400 text-xs shrink-0" />
+                <FaCheckCircle className="text-blue-400 text-xs shrink-0" />
               </div>
               <button type="button" onClick={() => remove(i)} className="text-red-400 hover:text-red-300 text-sm" data-testid={`doc-remove-${i}`}>
                 <FaTrash />

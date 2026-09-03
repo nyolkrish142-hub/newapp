@@ -48,14 +48,14 @@ const Blogs = () => {
             <Link
               key={b.id}
               to={`/blogs/${b.slug}`}
-              className="glass overflow-hidden group hover:border-emerald-500/40 transition flex flex-col"
+              className="glass overflow-hidden group hover:border-blue-500/40 transition flex flex-col"
               data-testid={`blog-card-${b.slug}`}
             >
               {b.image_url ? (
                 <img src={`${BACKEND}${b.image_url}`} alt={b.title} className="w-full h-44 object-cover" loading="lazy" />
               ) : (
-                <div className="w-full h-44 bg-gradient-to-br from-emerald-900/60 to-slate-900 grid place-items-center">
-                  <FaNewspaper className="text-4xl text-emerald-500/40" />
+                <div className="w-full h-44 bg-gradient-to-br from-blue-900/60 to-slate-900 grid place-items-center">
+                  <FaNewspaper className="text-4xl text-blue-500/40" />
                 </div>
               )}
               <div className="p-5 flex flex-col flex-1">
@@ -63,9 +63,9 @@ const Blogs = () => {
                   <FaCalendarAlt />
                   {new Date(b.created_at).toLocaleDateString(hi ? "hi-IN" : "en-IN", { day: "numeric", month: "short", year: "numeric" })}
                 </div>
-                <h2 className="font-display font-bold text-white text-lg leading-snug group-hover:text-emerald-400 transition mb-2">{b.title}</h2>
+                <h2 className="font-display font-bold text-white text-lg leading-snug group-hover:text-blue-400 transition mb-2">{b.title}</h2>
                 <p className="text-sm text-slate-400 line-clamp-2 flex-1">{b.excerpt}</p>
-                <span className="mt-3 text-sm font-semibold text-emerald-400 inline-flex items-center gap-1">
+                <span className="mt-3 text-sm font-semibold text-blue-400 inline-flex items-center gap-1">
                   {hi ? "पढ़ें" : "Read"} <FaChevronRight className="text-xs group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>

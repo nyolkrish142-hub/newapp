@@ -49,7 +49,7 @@ const HeroBrandCard = () => {
     <div className="signin-card" data-testid="hero-brand-card">
       <div className="flex items-center justify-between mb-2">
         <span className="signin-pill">{hi ? "प्रमाणित वेंडर" : "Verified Vendor"}</span>
-        <span className="text-[10px] text-emerald-400 uppercase tracking-widest">Est. 2019</span>
+        <span className="text-[10px] text-blue-400 uppercase tracking-widest">Est. 2019</span>
       </div>
       <div className="signin-badge"><FaAward /></div>
       <h3 className="font-display text-2xl font-bold text-white mb-1">
@@ -62,7 +62,7 @@ const HeroBrandCard = () => {
       <ul className="space-y-2 mb-5">
         {highlights.map((h, i) => (
           <li key={i} className="flex items-center gap-2 text-sm text-slate-300" data-testid={`hero-highlight-${i}`}>
-            <FaCheckCircle className="text-emerald-400 shrink-0" />
+            <FaCheckCircle className="text-blue-400 shrink-0" />
             <span>{hi ? h.hi : h.en}</span>
           </li>
         ))}
@@ -81,7 +81,7 @@ const HeroBrandCard = () => {
       </div>
 
       <p className="text-[11px] text-slate-500 text-center mt-4 flex items-center justify-center gap-1">
-        <FaShieldAlt className="text-emerald-500" /> {hi ? "कोई एडवांस नहीं · पारदर्शी कोटेशन" : "No advance payment · Transparent quote"}
+        <FaShieldAlt className="text-blue-500" /> {hi ? "कोई एडवांस नहीं · पारदर्शी कोटेशन" : "No advance payment · Transparent quote"}
       </p>
     </div>
   );
@@ -102,7 +102,7 @@ const NewsMarquee = () => {
               <span key={n.id || i} className="news-item font-hindi">
                 {lang === "hi" ? n.title_hi : n.title_en}
                 {n.type === "important" && <span className="new-badge">NEW</span>}
-                <span className="mx-4 text-emerald-500/40">•</span>
+                <span className="mx-4 text-blue-500/40">•</span>
               </span>
             ))}
           </Marquee>
@@ -130,7 +130,7 @@ const VacanciesPreview = () => {
     <section className="max-w-7xl mx-auto px-4 py-14" data-testid="vacancies-preview-section">
       <div className="glass-strong p-6 md:p-8 relative overflow-hidden">
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl pointer-events-none"></div>
 
         <div className="relative">
           <div className="flex items-start md:items-end justify-between flex-wrap gap-4 mb-6">
@@ -187,7 +187,7 @@ const VacanciesPreview = () => {
 
                   <div className="grid grid-cols-2 gap-2 mt-auto text-[11px]">
                     {v.post_date_text && (
-                      <div className="px-2 py-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 truncate">
+                      <div className="px-2 py-1.5 rounded-md bg-blue-500/10 border border-blue-500/30 text-blue-300 truncate">
                         <b>Posted:</b> {v.post_date_text}
                       </div>
                     )}
@@ -212,9 +212,9 @@ const VacanciesPreview = () => {
           )}
 
           {/* Bottom callout */}
-          <div className="mt-6 p-4 rounded-xl bg-emerald-500/[0.06] border border-emerald-500/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-3" data-testid="vacancies-preview-alert-cta">
-            <div className="flex items-center gap-3 text-sm text-emerald-200">
-              <div className="w-9 h-9 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shrink-0"><FaBullhorn /></div>
+          <div className="mt-6 p-4 rounded-xl bg-blue-500/[0.06] border border-blue-500/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-3" data-testid="vacancies-preview-alert-cta">
+            <div className="flex items-center gap-3 text-sm text-blue-200">
+              <div className="w-9 h-9 rounded-lg bg-blue-500/15 border border-blue-500/40 text-blue-400 flex items-center justify-center shrink-0"><FaBullhorn /></div>
               <div>
                 {hi
                   ? "नई भर्तियों की सूचना सीधे अपने ईमेल पर पाएँ।"
@@ -414,7 +414,7 @@ const Home = () => {
                 <div className="svc-icon"><Icon /></div>
                 <div className="font-display font-semibold text-lg text-white mb-1">{lang === "hi" ? s.hi : s.en}</div>
                 <div className="text-xs text-slate-400 mb-3">{lang === "hi" ? s.desc_hi : s.desc_en}</div>
-                <div className="text-emerald-400 text-xs font-semibold inline-flex items-center gap-1">
+                <div className="text-blue-400 text-xs font-semibold inline-flex items-center gap-1">
                   {lang === "hi" ? "पूछताछ करें" : "Enquire"} <FaChevronRight className="text-[10px]" />
                 </div>
               </Link>
@@ -461,7 +461,7 @@ const Home = () => {
               const Icon = c.icon;
               return (
                 <div key={i} className="glass p-4 flex items-start gap-3" data-testid={`why-${i}`}>
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0"><Icon /></div>
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center shrink-0"><Icon /></div>
                   <div>
                     <div className="font-semibold text-white text-sm">{lang === "hi" ? c.hi : c.en}</div>
                   </div>
@@ -488,7 +488,7 @@ const Home = () => {
                 </div>
                 <p className="text-sm text-slate-300 italic mb-3 font-hindi">"{lang === "hi" ? tm.hi : tm.en}"</p>
                 <div className="flex items-center gap-3 pt-3 border-t border-white/5">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-amber-500 flex items-center justify-center font-bold text-slate-900 text-sm">{tm.n[0]}</div>
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-amber-500 flex items-center justify-center font-bold text-slate-900 text-sm">{tm.n[0]}</div>
                   <div>
                     <div className="text-sm font-semibold text-white">{tm.n}</div>
                     <div className="text-xs text-slate-500">{tm.p}</div>
@@ -503,7 +503,7 @@ const Home = () => {
       {/* ─────────── CTA ─────────── */}
       <section className="max-w-7xl mx-auto px-4 pb-14" data-testid="cta-section">
         <div className="glass-strong p-8 md:p-10 relative overflow-hidden">
-          <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+          <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl pointer-events-none"></div>
           <div className="absolute -left-24 -bottom-24 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none"></div>
           <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>

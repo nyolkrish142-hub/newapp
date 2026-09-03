@@ -657,6 +657,11 @@ async def list_vacancies(
             {"post_name": {"$regex": haryana_rx, "$options": "i"}},
             {"row_text": {"$regex": haryana_rx, "$options": "i"}},
         ]
+    elif category == "other":
+        # "Other" = non-Haryana misc jobs; Haryana posts live in the Haryana category
+        query["category"] = "other"
+        if not state or state == "all":
+            query["state"] = {"$ne": "haryana"}
     elif category and category != "all":
         query["category"] = category
     # Hide admit_card / result listings unless the user explicitly selected
@@ -684,18 +689,16 @@ async def list_vacancies(
     elif mode and mode in ("online", "offline"):
         query["application_mode"] = mode
     if q:
-        text_or = [
-            {"title": {"$regex": q, "$options": "i"}},
-            {"organization": {"$regex": q, "$options": "i"}},
-            {"post_name": {"$regex": q, "$options": "i"}},
-            {"row_text": {"$regex": q, "$options": "i"}},
-        ]
-        # Preserve existing $or (haryana) by moving both into $and
-        if "$or" in query:
-            query.setdefault("$and", []).append({"$or": query.pop("$or")})
-            query["$and"].append({"$or": text_or})
-        else:
-            query["$or"] = text_or
+        # Advanced keyword search — every word in the query must match somewhere:
+        # title, post name, organization, qualification, category, state or raw text.
+        # e.g. "clerk haryana" finds posts containing BOTH words (in any field).
+        tokens = [re.escape(t) for t in re.split(r"\s+", q.strip()) if t]
+        search_fields = ["title", "post_name", "organization", "qualification", "row_text", "category", "state"]
+        and_clauses = query.setdefault("$and", [])
+        if "$or" in query:  # preserve existing $or (e.g. haryana cross-cutting view)
+            and_clauses.append({"$or": query.pop("$or")})
+        for tok in tokens:
+            and_clauses.append({"$or": [{f: {"$regex": tok, "$options": "i"}} for f in search_fields]})
     # When user explicitly wants expired items OR wants to include them,
     # we need to scan more docs because they tend to be older (sort=fetched_at desc)
     effective_limit = 1000 if (only_expired or include_expired) else min(limit, 1000)

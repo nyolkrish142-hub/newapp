@@ -38,7 +38,7 @@ const AdminLogin = () => {
     <div className="min-h-screen flex items-center justify-center px-4 bg-slate-50" data-testid="admin-login-page">
       <div className="w-full max-w-md rounded-2xl shadow-2xl bg-white border border-slate-200 p-8">
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-11 h-11 rounded-xl bg-emerald-600 text-white grid place-items-center">
+          <div className="w-11 h-11 rounded-xl bg-blue-600 text-white grid place-items-center">
             <FaCog />
           </div>
           <div>
@@ -49,7 +49,7 @@ const AdminLogin = () => {
         <form onSubmit={submit} className="space-y-4">
           <label className="block">
             <span className="text-xs font-semibold text-slate-600">Email</span>
-            <div className="mt-1 flex items-center gap-2 border border-slate-300 rounded-lg px-3 focus-within:border-emerald-500">
+            <div className="mt-1 flex items-center gap-2 border border-slate-300 rounded-lg px-3 focus-within:border-blue-500">
               <FaUser className="text-slate-400 text-sm" />
               <input
                 type="email"
@@ -64,7 +64,7 @@ const AdminLogin = () => {
           </label>
           <label className="block">
             <span className="text-xs font-semibold text-slate-600">Password</span>
-            <div className="mt-1 flex items-center gap-2 border border-slate-300 rounded-lg px-3 focus-within:border-emerald-500">
+            <div className="mt-1 flex items-center gap-2 border border-slate-300 rounded-lg px-3 focus-within:border-blue-500">
               <FaLock className="text-slate-400 text-sm" />
               <input
                 type="password"
@@ -80,7 +80,7 @@ const AdminLogin = () => {
           <button
             type="submit"
             disabled={busy}
-            className="w-full py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white font-semibold inline-flex items-center justify-center gap-2 transition-colors"
+            className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-semibold inline-flex items-center justify-center gap-2 transition-colors"
             data-testid="admin-login-submit"
           >
             <FaSignInAlt /> {busy ? "Signing in…" : "Sign In"}

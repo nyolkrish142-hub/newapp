@@ -46,7 +46,7 @@ const SolarCalculator = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 py-10" data-testid="solar-calculator-section">
       <div className="glass-strong p-6 md:p-10 relative overflow-hidden">
-        <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+        <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl pointer-events-none"></div>
         <div className="absolute -left-24 -bottom-24 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none"></div>
 
         <div className="relative grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -64,10 +64,10 @@ const SolarCalculator = () => {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label className="label mb-0">{lang === "hi" ? "मासिक बिजली बिल" : "Monthly Bill"}</label>
-                  <span className="text-emerald-400 font-display font-bold">{inr(bill)}</span>
+                  <span className="text-blue-400 font-display font-bold">{inr(bill)}</span>
                 </div>
                 <input type="range" min="500" max="15000" step="100" value={bill} onChange={(e) => setBill(+e.target.value)}
-                  className="w-full accent-emerald-500" data-testid="calc-bill-slider" />
+                  className="w-full accent-blue-500" data-testid="calc-bill-slider" />
                 <div className="flex justify-between text-[10px] text-slate-500 mt-1">
                   <span>₹500</span><span>₹15,000</span>
                 </div>
@@ -76,10 +76,10 @@ const SolarCalculator = () => {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label className="label mb-0">{lang === "hi" ? "छत का क्षेत्रफल" : "Roof Area"}</label>
-                  <span className="text-emerald-400 font-display font-bold">{roof} sqft</span>
+                  <span className="text-blue-400 font-display font-bold">{roof} sqft</span>
                 </div>
                 <input type="range" min="100" max="2000" step="50" value={roof} onChange={(e) => setRoof(+e.target.value)}
-                  className="w-full accent-emerald-500" data-testid="calc-roof-slider" />
+                  className="w-full accent-blue-500" data-testid="calc-roof-slider" />
                 <div className="flex justify-between text-[10px] text-slate-500 mt-1">
                   <span>100 sqft</span><span>2000 sqft</span>
                 </div>
@@ -88,7 +88,7 @@ const SolarCalculator = () => {
               <div className="grid grid-cols-2 gap-2">
                 <div className="glass p-3 text-center">
                   <div className="text-[10px] text-slate-400 uppercase tracking-widest">{lang === "hi" ? "अनुशंसित" : "Recommended"}</div>
-                  <div className="text-3xl font-display font-extrabold text-emerald-400 mt-1">{result.kw} kW</div>
+                  <div className="text-3xl font-display font-extrabold text-blue-400 mt-1">{result.kw} kW</div>
                 </div>
                 <div className="glass p-3 text-center">
                   <div className="text-[10px] text-slate-400 uppercase tracking-widest">{lang === "hi" ? "पेबैक" : "Payback"}</div>
@@ -125,7 +125,7 @@ const SolarCalculator = () => {
                 icon={FaSolarPanel}
                 label={lang === "hi" ? "अनुमानित शुद्ध लागत" : "Est. Net Cost"}
                 value={inr(result.net)}
-                tint="text-emerald-400"
+                tint="text-blue-400"
                 highlight
                 sub={lang === "hi" ? "सरकारी लाभ के बाद (अनुमानित)" : "After possible benefit (estimated)"}
               />
@@ -133,14 +133,14 @@ const SolarCalculator = () => {
                 icon={FaBolt}
                 label={lang === "hi" ? "मासिक बचत" : "Monthly Savings"}
                 value={inr(result.monthlySavings)}
-                tint="text-emerald-400"
+                tint="text-blue-400"
                 sub={`≈ ${inr(result.yearlySavings)}/${lang === "hi" ? "वर्ष" : "yr"}`}
               />
               <MetricCard
                 icon={FaLeaf}
                 label={lang === "hi" ? "CO₂ में कमी" : "CO₂ Offset"}
                 value={`${Math.round(result.co2ReductionKgYr).toLocaleString("en-IN")} kg`}
-                tint="text-emerald-300"
+                tint="text-blue-300"
                 sub={lang === "hi" ? "हर वर्ष" : "per year"}
               />
               <MetricCard
@@ -177,7 +177,7 @@ const SolarCalculator = () => {
 };
 
 const MetricCard = ({ icon: Icon, label, value, sub, tint, highlight }) => (
-  <div className={`glass p-4 ${highlight ? "border-emerald-500/40 !bg-emerald-500/5" : ""}`} data-testid={`metric-${label}`}>
+  <div className={`glass p-4 ${highlight ? "border-blue-500/40 !bg-blue-500/5" : ""}`} data-testid={`metric-${label}`}>
     <div className="flex items-center justify-between mb-1">
       <div className="text-[10px] text-slate-400 uppercase tracking-widest">{label}</div>
       <Icon className={`${tint} opacity-70`} />

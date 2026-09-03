@@ -52,7 +52,7 @@ const HeroSlider = () => {
               <Link to={slide.cta} className="btn-gov-orange" data-testid={`hero-apply-btn-${idx}`}>
                 <i className="fa-solid fa-file-signature"></i> {t(S.hero.apply_now)}
               </Link>
-              <Link to="/services" className="btn-outline !border-white !text-white !bg-transparent hover:!bg-white hover:!text-emerald-900" data-testid={`hero-know-btn-${idx}`}>
+              <Link to="/services" className="btn-outline !border-white !text-white !bg-transparent hover:!bg-white hover:!text-blue-900" data-testid={`hero-know-btn-${idx}`}>
                 {t(S.hero.know_more)} <i className="fa-solid fa-arrow-right"></i>
               </Link>
             </div>

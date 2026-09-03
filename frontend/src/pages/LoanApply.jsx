@@ -107,10 +107,10 @@ const LoanApply = () => {
         )}
 
         {emi > 0 && (
-          <div className="glass p-4 flex items-center justify-between border-emerald-500/30 !bg-emerald-500/5" data-testid="emi-preview">
+          <div className="glass p-4 flex items-center justify-between border-blue-500/30 !bg-blue-500/5" data-testid="emi-preview">
             <div>
               <div className="text-xs text-slate-400 uppercase tracking-widest">{t({ hi: "अनुमानित EMI (5.75% ब्याज · 0% प्रोसेसिंग)", en: "Estimated EMI (5.75% interest · 0% processing)" })}</div>
-              <div className="text-3xl font-display font-bold text-emerald-400">₹ {emi.toLocaleString("en-IN")}<span className="text-sm font-normal text-slate-500"> / {t({ hi: "माह", en: "month" })}</span></div>
+              <div className="text-3xl font-display font-bold text-blue-400">₹ {emi.toLocaleString("en-IN")}<span className="text-sm font-normal text-slate-500"> / {t({ hi: "माह", en: "month" })}</span></div>
             </div>
             <div className="text-amber-400 text-4xl"><i className="fa-solid fa-calculator"></i></div>
           </div>

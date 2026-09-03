@@ -83,7 +83,7 @@ const Services = () => {
               <div className="svc-icon"><Icon /></div>
               <div className="font-display font-semibold text-white text-lg mb-1">{hi ? c.hi : c.en}</div>
               <div className="text-xs text-slate-400 mb-3">{hi ? c.desc_hi : c.desc_en}</div>
-              <div className="text-emerald-400 text-xs font-semibold inline-flex items-center gap-1">
+              <div className="text-blue-400 text-xs font-semibold inline-flex items-center gap-1">
                 {hi ? "पूछताछ करें" : "Enquire"} <FaChevronRight className="text-[10px]" />
               </div>
             </Link>
@@ -93,7 +93,7 @@ const Services = () => {
 
       {/* Compliance Note */}
       <div className="mt-10 glass p-5 flex items-start gap-3 text-sm text-slate-300 leading-relaxed" data-testid="services-compliance-note">
-        <FaShieldAlt className="text-emerald-400 mt-1 shrink-0" />
+        <FaShieldAlt className="text-blue-400 mt-1 shrink-0" />
         <div>
           <div className="font-semibold text-white mb-1">{hi ? "पारदर्शी सेवा प्रतिबद्धता" : "Transparent Service Commitment"}</div>
           <ul className="space-y-1.5">
@@ -102,7 +102,7 @@ const Services = () => {
               { hi: "पूछताछ के बाद पारदर्शी कोटेशन दिया जाता है — कोई एडवांस भुगतान नहीं।", en: "A transparent quotation is shared after enquiry — no advance payment required." },
               { hi: "सरकारी योजनाओं की जानकारी केवल सामान्य मार्गदर्शन के लिए है, कृपया आधिकारिक स्रोतों से सत्यापन करें।", en: "Government scheme information is for general guidance only — please verify with official sources." },
             ].map((n, i) => (
-              <li key={i} className="flex items-start gap-2 text-slate-400 text-xs"><FaCheckCircle className="text-emerald-400 mt-0.5 shrink-0" /> <span>{hi ? n.hi : n.en}</span></li>
+              <li key={i} className="flex items-start gap-2 text-slate-400 text-xs"><FaCheckCircle className="text-blue-400 mt-0.5 shrink-0" /> <span>{hi ? n.hi : n.en}</span></li>
             ))}
           </ul>
         </div>

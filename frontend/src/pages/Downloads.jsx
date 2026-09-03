@@ -31,13 +31,13 @@ const Downloads = () => {
       ) : (
         <div className="grid md:grid-cols-2 gap-4 mt-4" data-testid="cv-templates-grid">
           {templates.map((t) => (
-            <a key={t.id} href={`${BACKEND}${t.url}`} target="_blank" rel="noreferrer" className="glass p-5 flex items-center gap-4 hover:border-emerald-500/40 transition" data-testid={`cv-template-${t.id}`}>
-              <FaFileAlt className="text-emerald-400 text-3xl shrink-0" />
+            <a key={t.id} href={`${BACKEND}${t.url}`} target="_blank" rel="noreferrer" className="glass p-5 flex items-center gap-4 hover:border-blue-500/40 transition" data-testid={`cv-template-${t.id}`}>
+              <FaFileAlt className="text-blue-400 text-3xl shrink-0" />
               <div className="flex-1">
                 <div className="font-semibold text-white">{t.name}</div>
                 <div className="text-xs text-slate-400 mt-1">{t.filename}{t.size ? ` · ${(t.size / 1024).toFixed(0)} KB` : ""}</div>
               </div>
-              <FaFileDownload className="text-emerald-400 text-xl" />
+              <FaFileDownload className="text-blue-400 text-xl" />
             </a>
           ))}
         </div>
@@ -46,13 +46,13 @@ const Downloads = () => {
       <h2 className="font-display text-xl font-bold text-white mt-10">{hi ? "फॉर्म्स व गाइडलाइन" : "Forms & Guidelines"}</h2>
       <div className="grid md:grid-cols-2 gap-4 mt-4">
         {items.map((d, i) => (
-          <a key={d.id} href={d.url} className="glass p-5 flex items-center gap-4 hover:border-emerald-500/40 transition" data-testid={`download-item-${i}`}>
+          <a key={d.id} href={d.url} className="glass p-5 flex items-center gap-4 hover:border-blue-500/40 transition" data-testid={`download-item-${i}`}>
             <FaFilePdf className="text-red-400 text-4xl shrink-0" />
             <div className="flex-1">
               <div className="font-semibold text-white">{hi ? d.title_hi : d.title_en}</div>
               <div className="text-xs text-slate-400 mt-1">{d.size}</div>
             </div>
-            <FaFileDownload className="text-emerald-400 text-xl" />
+            <FaFileDownload className="text-blue-400 text-xl" />
           </a>
         ))}
       </div>

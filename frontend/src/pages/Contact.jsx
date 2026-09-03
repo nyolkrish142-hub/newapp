@@ -38,10 +38,10 @@ const Contact = () => {
           ].map((c, i) => {
             const Icon = c.icon;
             const content = (
-              <div className="glass p-4 flex items-start gap-3 hover:border-emerald-500/40 transition" data-testid={`contact-info-${i}`}>
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0"><Icon /></div>
+              <div className="glass p-4 flex items-start gap-3 hover:border-blue-500/40 transition" data-testid={`contact-info-${i}`}>
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center shrink-0"><Icon /></div>
                 <div>
-                  <div className="text-xs font-semibold text-emerald-400 uppercase tracking-widest">{c.title}</div>
+                  <div className="text-xs font-semibold text-blue-400 uppercase tracking-widest">{c.title}</div>
                   <div className="text-sm text-slate-300 break-all mt-1">{c.val}</div>
                 </div>
               </div>

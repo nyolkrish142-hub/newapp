@@ -74,7 +74,7 @@ const KeyEditor = ({ contentKey, title, hint, initialValue, onSaved }) => {
           <button
             onClick={save}
             disabled={busy || !dirty}
-            className="px-4 py-1.5 rounded-lg bg-emerald-600 disabled:bg-slate-300 hover:bg-emerald-700 text-white text-xs font-semibold inline-flex items-center gap-1.5"
+            className="px-4 py-1.5 rounded-lg bg-blue-600 disabled:bg-slate-300 hover:bg-blue-700 text-white text-xs font-semibold inline-flex items-center gap-1.5"
             data-testid={`editor-${contentKey}-save`}
           >
             <FaSave className="text-[10px]" /> {busy ? "Saving…" : "Save"}
@@ -92,7 +92,7 @@ const KeyEditor = ({ contentKey, title, hint, initialValue, onSaved }) => {
                 value={value[f] ?? ""}
                 onChange={(e) => update(f, e.target.value)}
                 rows={3}
-                className="mt-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:border-emerald-500 outline-none text-sm text-slate-900 bg-white"
+                className="mt-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:border-blue-500 outline-none text-sm text-slate-900 bg-white"
                 data-testid={`editor-${contentKey}-${f}`}
               />
             ) : (
@@ -100,7 +100,7 @@ const KeyEditor = ({ contentKey, title, hint, initialValue, onSaved }) => {
                 type="text"
                 value={value[f] ?? ""}
                 onChange={(e) => update(f, e.target.value)}
-                className="mt-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:border-emerald-500 outline-none text-sm text-slate-900 bg-white"
+                className="mt-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:border-blue-500 outline-none text-sm text-slate-900 bg-white"
                 data-testid={`editor-${contentKey}-${f}`}
               />
             )}

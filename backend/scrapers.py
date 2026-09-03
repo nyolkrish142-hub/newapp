@@ -66,7 +66,11 @@ def _cat_from_title(title: str) -> str:
 # Includes state PSC / SSC / recruitment-board abbreviations so we can detect
 # state-scoped jobs even when only the org name is available.
 _STATE_KEYWORDS = {
-    "haryana":          [r"\bharyana\b", r"\bhssc\b", r"\bhpsc\b", r"\bhkrn\b", r"\bhprb\b", r"\bhbse\b", r"\bpanchkula\b"],
+    "haryana":          [r"\bharyana\b", r"\bhssc\b", r"\bhpsc\b", r"\bhkrn\b", r"\bhprb\b", r"\bhbse\b", r"\bpanchkula\b",
+                         r"\bhisar\b", r"\bgurugram\b", r"\bgurgaon\b", r"\bambala\b", r"\bsirsa\b", r"\bfaridabad\b",
+                         r"\bkarnal\b", r"\brohtak\b", r"\bpanipat\b", r"\bsonipat\b", r"\brewari\b", r"\bjind\b",
+                         r"\bkaithal\b", r"\bkurukshetra\b", r"\byamunanagar\b", r"\bpalwal\b", r"\bjhajjar\b",
+                         r"\bbhiwani\b", r"\bfatehabad\b", r"\bmahendragarh\b", r"\bnuh\b", r"\bcharkhi\s*dadri\b"],
     "delhi":            [r"\bdelhi\b", r"\bdsssb\b", r"\bdpsc\b"],
     "punjab":           [r"\bpunjab\b", r"\bpssb\b", r"\bpsssb\b", r"\bppsc\b", r"\bpstet\b"],
     "rajasthan":        [r"\brajasthan\b", r"\brpsc\b", r"\brsmssb\b", r"\brssb\b"],
@@ -445,6 +449,9 @@ async def refresh_vacancies_into_db(db) -> int:
     merged = 0
     for v in vacs:
         v["dedupe_key"] = _dedupe_key(v.get("title", ""))
+        # Haryana-state jobs belong in the "haryana" category, not "other"
+        if v.get("state") == "haryana" and v.get("category") == "other":
+            v["category"] = "haryana"
         try:
             by_url = await db.vacancies.find_one({"url": v["url"]}, {"_id": 1})
             if by_url:

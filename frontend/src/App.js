@@ -86,7 +86,7 @@ function AppRouter() {
 
       <Route path="*" element={
         <div className="max-w-3xl mx-auto px-4 py-20 text-center">
-          <h1 className="font-display text-6xl font-extrabold text-emerald-400">404</h1>
+          <h1 className="font-display text-6xl font-extrabold text-blue-400">404</h1>
           <p className="text-slate-400 mt-3">Page not found</p>
         </div>
       } />

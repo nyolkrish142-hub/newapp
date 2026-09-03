@@ -43,7 +43,7 @@ const CSCServices = () => {
       {/* Trust badges */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6" data-testid="csc-trust-badges">
         <div className="glass p-4 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center"><FaShieldAlt /></div>
+          <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center"><FaShieldAlt /></div>
           <div>
             <div className="text-sm font-semibold text-white">{lang === "hi" ? "अधिकृत CSC वेंडर" : "Authorised CSC Vendor"}</div>
             <div className="text-xs text-slate-400">{lang === "hi" ? "सरकार अनुमोदित" : "Government approved"}</div>
@@ -74,13 +74,13 @@ const CSCServices = () => {
         </div>
         <div className="flex gap-2 overflow-x-auto">
           <button onClick={() => setActiveCat("all")}
-            className={`px-3 py-2 rounded-lg text-xs font-semibold whitespace-nowrap ${activeCat === "all" ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30" : "bg-white/[0.03] text-slate-400 border border-white/10 hover:text-white"}`}
+            className={`px-3 py-2 rounded-lg text-xs font-semibold whitespace-nowrap ${activeCat === "all" ? "bg-blue-500/15 text-blue-300 border border-blue-500/30" : "bg-white/[0.03] text-slate-400 border border-white/10 hover:text-white"}`}
             data-testid="csc-cat-all">
             {lang === "hi" ? "सभी" : "All"} ({totalCount})
           </button>
           {CSC_CATEGORIES.map(cat => (
             <button key={cat.id} onClick={() => setActiveCat(cat.id)}
-              className={`px-3 py-2 rounded-lg text-xs font-semibold whitespace-nowrap ${activeCat === cat.id ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30" : "bg-white/[0.03] text-slate-400 border border-white/10 hover:text-white"}`}
+              className={`px-3 py-2 rounded-lg text-xs font-semibold whitespace-nowrap ${activeCat === cat.id ? "bg-blue-500/15 text-blue-300 border border-blue-500/30" : "bg-white/[0.03] text-slate-400 border border-white/10 hover:text-white"}`}
               data-testid={`csc-cat-${cat.id}`}>
               {lang === "hi" ? cat.hi : cat.en}
             </button>
@@ -101,14 +101,14 @@ const CSCServices = () => {
             return (
               <div key={cat.id} data-testid={`csc-cat-block-${cat.id}`}>
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center"><Icon /></div>
+                  <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center"><Icon /></div>
                   <h2 className="font-display text-xl font-bold text-white">{lang === "hi" ? cat.hi : cat.en}</h2>
                   <span className="text-xs text-slate-500">{cat.services.length} {lang === "hi" ? "सेवाएँ" : "services"}</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                   {cat.services.map(s => (
                     <Link key={s.id} to={`/csc/apply?service=${s.id}`}
-                      className="glass p-4 flex items-center justify-between hover:border-emerald-500/40 transition group"
+                      className="glass p-4 flex items-center justify-between hover:border-blue-500/40 transition group"
                       data-testid={`csc-service-${s.id}`}>
                       <div className="flex-1 min-w-0 pr-3">
                         <div className="font-semibold text-white text-sm truncate">{lang === "hi" ? s.hi : s.en}</div>
@@ -116,7 +116,7 @@ const CSCServices = () => {
                           {lang === "hi" ? "यहाँ क्लिक करके आवेदन करें →" : "Click to apply →"}
                         </div>
                       </div>
-                      <FaChevronRight className="text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition shrink-0" />
+                      <FaChevronRight className="text-slate-500 group-hover:text-blue-400 group-hover:translate-x-1 transition shrink-0" />
                     </Link>
                   ))}
                 </div>

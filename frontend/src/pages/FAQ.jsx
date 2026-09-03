@@ -15,10 +15,10 @@ const FAQ = () => {
       <div className="mt-8 space-y-3">
         {items.map((f, i) => (
           <div key={f.id} className="glass overflow-hidden" data-testid={`faq-item-${i}`}>
-            <button className="w-full flex items-center justify-between p-4 text-left font-semibold text-white hover:bg-emerald-500/5 transition"
+            <button className="w-full flex items-center justify-between p-4 text-left font-semibold text-white hover:bg-blue-500/5 transition"
               onClick={() => setOpen(open === i ? -1 : i)} data-testid={`faq-toggle-${i}`}>
               <span className="flex items-center gap-2"><FaQuestionCircle className="text-amber-400" /> {lang === "hi" ? f.q_hi : f.q_en}</span>
-              <FaChevronDown className={`transition-transform text-emerald-400 ${open === i ? "rotate-180" : ""}`} />
+              <FaChevronDown className={`transition-transform text-blue-400 ${open === i ? "rotate-180" : ""}`} />
             </button>
             {open === i && <div className="px-4 pb-4 text-slate-300 leading-relaxed font-hindi border-t border-white/5 pt-3">{lang === "hi" ? f.a_hi : f.a_en}</div>}
           </div>

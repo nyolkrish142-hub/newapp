@@ -65,7 +65,7 @@ const Header = () => {
               <div className="font-display text-xl font-extrabold text-white tracking-tight">
                 {lang === "hi" ? "एचआर डिजिटल सर्विसेज" : "HR Digital Services"}
               </div>
-              <div className="text-[10px] font-semibold text-emerald-400/80 tracking-[0.2em] uppercase mt-0.5">
+              <div className="text-[10px] font-semibold text-blue-400/80 tracking-[0.2em] uppercase mt-0.5">
                 {lang === "hi" ? "सरकारी नौकरी · सोलर सेवाएँ" : "Govt Jobs & Solar Services"}
               </div>
             </div>
@@ -73,7 +73,7 @@ const Header = () => {
 
           {/* Right controls */}
           <div className="flex items-center gap-3 flex-wrap">
-            <a href="tel:8168762016" className="status-pill hover:!bg-emerald-500/20 transition-colors" data-testid="header-call-pill">
+            <a href="tel:8168762016" className="status-pill hover:!bg-blue-500/20 transition-colors" data-testid="header-call-pill">
               <span className="status-dot"></span>
               {lang === "hi" ? "कॉल करें" : "Call"} · 8168762016
             </a>
@@ -132,7 +132,7 @@ const Header = () => {
 
           <div className="flex-1"></div>
 
-          <a href={WHATSAPP_CHANNEL_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm font-bold !py-2 !px-4 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] text-white shadow-lg shadow-emerald-500/20 transition" data-testid="header-join-whatsapp-button">
+          <a href={WHATSAPP_CHANNEL_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm font-bold !py-2 !px-4 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] text-white shadow-lg shadow-blue-500/20 transition" data-testid="header-join-whatsapp-button">
             <FaWhatsapp /> {lang === "hi" ? "WhatsApp चैनल" : "WhatsApp Channel"}
           </a>
           <a href="tel:8168762016" className="btn-mint text-sm !py-2 !px-4" data-testid="topbar-contact-btn">

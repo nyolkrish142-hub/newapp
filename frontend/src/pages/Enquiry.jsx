@@ -86,7 +86,7 @@ const Enquiry = () => {
     return (
       <div className="max-w-3xl mx-auto px-4 py-16" data-testid="enquiry-success-page">
         <div className="glass-strong p-8 md:p-10 text-center">
-          <div className="w-16 h-16 mx-auto rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-3xl mb-4">
+          <div className="w-16 h-16 mx-auto rounded-full bg-blue-500/15 border border-blue-500/40 text-blue-400 flex items-center justify-center text-3xl mb-4">
             <FaCheckCircle />
           </div>
           <h1 className="font-display text-3xl font-bold text-white mb-2" data-testid="enquiry-thanks-title">
@@ -97,7 +97,7 @@ const Enquiry = () => {
               ? "हमें आपकी पूछताछ मिल गई है। हमारी टीम 24 घंटे में आपसे संपर्क करेगी।"
               : "We've received your enquiry. Our team will contact you within 24 hours."}
           </p>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-emerald-300 font-mono" data-testid="enquiry-ref-no">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-blue-300 font-mono" data-testid="enquiry-ref-no">
             {hi ? "रेफ नं" : "Ref No."}: <b>{done}</b>
           </div>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -178,8 +178,8 @@ const Enquiry = () => {
             </div>
           </div>
 
-          <div className="p-3 rounded-lg bg-emerald-500/[0.06] border border-emerald-500/20 text-[11px] text-emerald-200/90 flex items-start gap-2" data-testid="enquiry-privacy-note">
-            <FaShieldAlt className="text-emerald-400 mt-0.5 shrink-0" />
+          <div className="p-3 rounded-lg bg-blue-500/[0.06] border border-blue-500/20 text-[11px] text-blue-200/90 flex items-start gap-2" data-testid="enquiry-privacy-note">
+            <FaShieldAlt className="text-blue-400 mt-0.5 shrink-0" />
             <div>
               {hi
                 ? "हम कभी भी आधार, PAN, बैंक विवरण, OTP या पासवर्ड नहीं माँगते। आपकी जानकारी केवल आपसे संपर्क के लिए उपयोग होगी।"
@@ -198,26 +198,26 @@ const Enquiry = () => {
         {/* Sidebar */}
         <aside className="space-y-4">
           <div className="glass p-5" data-testid="enquiry-side-contact">
-            <div className="text-xs uppercase text-emerald-400 font-semibold tracking-widest mb-3">
+            <div className="text-xs uppercase text-blue-400 font-semibold tracking-widest mb-3">
               {hi ? "सीधा संपर्क" : "Direct Contact"}
             </div>
             <div className="space-y-3 text-sm">
-              <a href="tel:8168762016" className="flex items-center gap-3 text-slate-300 hover:text-emerald-400">
-                <span className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center"><FaPhone /></span>
+              <a href="tel:8168762016" className="flex items-center gap-3 text-slate-300 hover:text-blue-400">
+                <span className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center"><FaPhone /></span>
                 <div>
                   <div className="text-[10px] text-slate-500 uppercase tracking-widest">{hi ? "फोन" : "Phone"}</div>
                   <div className="font-semibold">8168762016</div>
                 </div>
               </a>
-              <a href="https://wa.me/918168762016" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-emerald-400">
-                <span className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center"><FaWhatsapp /></span>
+              <a href="https://wa.me/918168762016" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-blue-400">
+                <span className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center"><FaWhatsapp /></span>
                 <div>
                   <div className="text-[10px] text-slate-500 uppercase tracking-widest">WhatsApp</div>
                   <div className="font-semibold">8168762016</div>
                 </div>
               </a>
-              <a href="mailto:haryanaenterpriseskagdana@gmail.com" className="flex items-center gap-3 text-slate-300 hover:text-emerald-400">
-                <span className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center"><FaEnvelope /></span>
+              <a href="mailto:haryanaenterpriseskagdana@gmail.com" className="flex items-center gap-3 text-slate-300 hover:text-blue-400">
+                <span className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center"><FaEnvelope /></span>
                 <div>
                   <div className="text-[10px] text-slate-500 uppercase tracking-widest">Email</div>
                   <div className="font-semibold text-xs break-all">haryanaenterpriseskagdana@gmail.com</div>
@@ -227,7 +227,7 @@ const Enquiry = () => {
           </div>
 
           <div className="glass p-5" data-testid="enquiry-side-hours">
-            <div className="text-xs uppercase text-emerald-400 font-semibold tracking-widest mb-3">
+            <div className="text-xs uppercase text-blue-400 font-semibold tracking-widest mb-3">
               {hi ? "कार्यालय समय" : "Office Hours"}
             </div>
             <div className="flex items-center gap-3 text-sm text-slate-300">
@@ -237,7 +237,7 @@ const Enquiry = () => {
           </div>
 
           <div className="glass p-5" data-testid="enquiry-side-address">
-            <div className="text-xs uppercase text-emerald-400 font-semibold tracking-widest mb-3">
+            <div className="text-xs uppercase text-blue-400 font-semibold tracking-widest mb-3">
               {hi ? "पता" : "Office Address"}
             </div>
             <div className="flex items-start gap-3 text-sm text-slate-300">

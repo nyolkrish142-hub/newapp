@@ -44,7 +44,7 @@ const AdminAnalytics = () => {
       {/* Loan amount summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
-          { label: lang === "hi" ? "कुल लोन राशि" : "Total Loan Amount", val: inr(data.loan_amount.total || 0), color: "text-emerald-400" },
+          { label: lang === "hi" ? "कुल लोन राशि" : "Total Loan Amount", val: inr(data.loan_amount.total || 0), color: "text-blue-400" },
           { label: lang === "hi" ? "औसत लोन" : "Avg Loan", val: inr(data.loan_amount.avg || 0), color: "text-amber-400" },
           { label: lang === "hi" ? "अधिकतम लोन" : "Max Loan", val: inr(data.loan_amount.max || 0), color: "text-sky-400" },
         ].map((s, i) => (
@@ -61,7 +61,7 @@ const AdminAnalytics = () => {
       {/* Line chart: applications over last 30 days */}
       <div className="glass p-5" data-testid="chart-daily-applications">
         <div className="flex items-center gap-2 mb-3">
-          <FaChartLine className="text-emerald-400" />
+          <FaChartLine className="text-blue-400" />
           <h3 className="font-semibold text-white">{lang === "hi" ? "पिछले 30 दिनों में आवेदन / यूज़र्स" : "Applications & Users — last 30 days"}</h3>
         </div>
         <ResponsiveContainer width="100%" height={260}>
@@ -82,7 +82,7 @@ const AdminAnalytics = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="glass p-5" data-testid="chart-solar-status">
           <div className="flex items-center gap-2 mb-3">
-            <FaChartPie className="text-emerald-400" />
+            <FaChartPie className="text-blue-400" />
             <h3 className="font-semibold text-white">{lang === "hi" ? "सोलर आवेदन — स्थिति" : "Solar — by Status"}</h3>
           </div>
           <ResponsiveContainer width="100%" height={230}>
@@ -117,7 +117,7 @@ const AdminAnalytics = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="glass p-5" data-testid="chart-solar-type">
           <div className="flex items-center gap-2 mb-3">
-            <FaChartBar className="text-emerald-400" />
+            <FaChartBar className="text-blue-400" />
             <h3 className="font-semibold text-white">{lang === "hi" ? "सोलर — प्रकार" : "Solar — by Type"}</h3>
           </div>
           <ResponsiveContainer width="100%" height={220}>

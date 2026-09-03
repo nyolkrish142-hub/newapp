@@ -34,7 +34,7 @@ const ForgotPassword = () => {
 
         {done ? (
           <div className="text-center py-6" data-testid="forgot-success">
-            <FaCheckCircle className="text-emerald-400 text-5xl mx-auto mb-3" />
+            <FaCheckCircle className="text-blue-400 text-5xl mx-auto mb-3" />
             <p className="text-slate-300 text-sm">
               {lang === "hi" ? "अगर आपका खाता मौजूद है, तो आपके ईमेल में एक लिंक भेज दिया गया है। 1 घंटे में इसे उपयोग करें।" : "If your account exists, a reset link has been sent to your email. Use it within 1 hour."}
             </p>

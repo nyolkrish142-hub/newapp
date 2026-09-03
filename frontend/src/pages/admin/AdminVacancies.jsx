@@ -63,7 +63,7 @@ const AdminVacancies = () => {
           <h1 className="text-2xl font-bold text-slate-900 mb-1">Manual Job Posts</h1>
           <p className="text-sm text-slate-600 max-w-2xl">
             Vacancies you add here appear alongside the auto-scraped feed on the
-            public <Link to="/" className="text-emerald-700 underline">homepage</Link>.
+            public <Link to="/" className="text-blue-700 underline">homepage</Link>.
             Auto-refresh will never overwrite them. Har job ki WhatsApp summary auto-generate hoti hai.
           </p>
         </div>
@@ -79,7 +79,7 @@ const AdminVacancies = () => {
           </button>
           <button
             onClick={() => setEditing({})}
-            className="px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold inline-flex items-center gap-2 shadow"
+            className="px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold inline-flex items-center gap-2 shadow"
             data-testid="admin-vacancies-add-btn"
           >
             <FaPlus /> Add Vacancy
@@ -97,7 +97,7 @@ const AdminVacancies = () => {
           </p>
           <button
             onClick={() => setEditing({})}
-            className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold inline-flex items-center gap-2"
             data-testid="admin-vacancies-empty-add-btn"
           >
             <FaPlus /> Add First Vacancy
@@ -122,7 +122,7 @@ const AdminVacancies = () => {
               {items.map((v) => (
                 <tr key={v.id} className="border-t border-slate-100 hover:bg-slate-50" data-testid={`admin-vac-row-${v.id}`}>
                   <td className="px-4 py-3 font-medium text-slate-900 max-w-md">
-                    <Link to={`/vacancies/${v.id}`} target="_blank" className="hover:text-emerald-700 inline-flex items-center gap-1.5">
+                    <Link to={`/vacancies/${v.id}`} target="_blank" className="hover:text-blue-700 inline-flex items-center gap-1.5">
                       <span className="line-clamp-2">{v.title}</span>
                       <FaExternalLinkAlt className="text-[9px] text-slate-400 shrink-0" />
                     </Link>
@@ -132,7 +132,7 @@ const AdminVacancies = () => {
                   <td className="px-4 py-3 hidden lg:table-cell">
                     {v.application_mode ? (
                       <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold capitalize ${
-                        v.application_mode === "online" ? "bg-emerald-100 text-emerald-800" : "bg-amber-100 text-amber-800"
+                        v.application_mode === "online" ? "bg-blue-100 text-blue-800" : "bg-amber-100 text-amber-800"
                       }`}>{v.application_mode}</span>
                     ) : <span className="text-slate-400">—</span>}
                   </td>

@@ -4,7 +4,7 @@ import { FaSearch, FaEdit, FaRandom, FaWhatsapp, FaTimes, FaSave } from "react-i
 import { adminApi } from "./adminAuth";
 import { computeSeoScore } from "@/lib/utils-seo";
 
-const inputCls = "mt-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:border-emerald-500 outline-none text-sm text-slate-900 bg-white";
+const inputCls = "mt-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:border-blue-500 outline-none text-sm text-slate-900 bg-white";
 
 /** Rank Math style per-job SEO manager — works on manual + scraped (API) vacancies. */
 const AdminJobSEO = () => {
@@ -105,11 +105,11 @@ const AdminJobSEO = () => {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Job title / organization search..."
-            className="w-full pl-9 pr-3 py-2.5 rounded-lg border border-slate-300 focus:border-emerald-500 outline-none text-sm bg-white"
+            className="w-full pl-9 pr-3 py-2.5 rounded-lg border border-slate-300 focus:border-blue-500 outline-none text-sm bg-white"
             data-testid="admin-job-seo-search"
           />
         </div>
-        <button type="submit" className="px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold" data-testid="admin-job-seo-search-btn">
+        <button type="submit" className="px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold" data-testid="admin-job-seo-search-btn">
           Search
         </button>
       </form>
@@ -138,7 +138,7 @@ const AdminJobSEO = () => {
                       <p className="text-xs text-slate-400 line-clamp-1">{v.organization || "—"} · Last: {v.last_date_text || "—"}</p>
                     </td>
                     <td className="px-4 py-3 whitespace-nowrap">
-                      <span className={`text-xs font-bold px-2 py-1 rounded-full ${v.source === "manual" ? "text-emerald-700 bg-emerald-50" : "text-amber-700 bg-amber-50"}`}>
+                      <span className={`text-xs font-bold px-2 py-1 rounded-full ${v.source === "manual" ? "text-blue-700 bg-blue-50" : "text-amber-700 bg-amber-50"}`}>
                         {v.source === "manual" ? "Manual" : "API"}
                       </span>
                     </td>
@@ -151,7 +151,7 @@ const AdminJobSEO = () => {
                       <button onClick={() => copyWa(v)} title="Copy WhatsApp Summary" className="inline-flex p-2 rounded-md text-[#1ebe5d] hover:bg-green-50" data-testid={`admin-job-seo-wa-${v.id}`}>
                         <FaWhatsapp />
                       </button>
-                      <button onClick={() => openEdit(v)} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md text-emerald-700 hover:bg-emerald-50 text-xs font-semibold" data-testid={`admin-job-seo-edit-${v.id}`}>
+                      <button onClick={() => openEdit(v)} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md text-blue-700 hover:bg-blue-50 text-xs font-semibold" data-testid={`admin-job-seo-edit-${v.id}`}>
                         <FaEdit /> Edit SEO
                       </button>
                     </td>
@@ -218,7 +218,7 @@ const AdminJobSEO = () => {
               <button
                 onClick={save}
                 disabled={saving}
-                className="w-full py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white font-semibold inline-flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-semibold inline-flex items-center justify-center gap-2"
                 data-testid="admin-job-seo-save"
               >
                 <FaSave /> {saving ? "Saving…" : "Save SEO Settings"}

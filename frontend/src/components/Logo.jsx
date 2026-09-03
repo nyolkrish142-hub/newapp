@@ -29,7 +29,7 @@ const Logo = ({ size = 44, variant = "tile", className = "" }) => {
   }
   return (
     <div
-      className={`flex items-center justify-center rounded-xl bg-white shadow-[0_4px_18px_-6px_rgba(16,185,129,0.35)] ring-1 ring-emerald-500/20 ${className}`}
+      className={`flex items-center justify-center rounded-xl bg-white shadow-[0_4px_18px_-6px_rgba(16,185,129,0.35)] ring-1 ring-blue-500/20 ${className}`}
       style={{ width: size, height: size, padding: Math.max(2, Math.round(size * 0.06)) }}
       data-testid="brand-logo"
     >

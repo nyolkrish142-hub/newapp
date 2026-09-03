@@ -61,7 +61,7 @@ const IrrigationApply = () => {
       {selectedScheme && (
         <div className="glass p-4 mb-6 flex items-center justify-between" data-testid="irrigation-scheme-summary">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center"><FaSeedling /></div>
+            <div className="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center"><FaSeedling /></div>
             <div>
               <div className="text-[10px] text-slate-400 uppercase tracking-widest">{lang === "hi" ? "चयनित योजना" : "Selected Scheme"}</div>
               <div className="font-semibold text-white">{lang === "hi" ? selectedScheme.hi : selectedScheme.en}</div>

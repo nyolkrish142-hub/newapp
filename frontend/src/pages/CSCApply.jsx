@@ -54,7 +54,7 @@ const CSCApply = () => {
       {service && (
         <div className="glass p-4 mb-6 flex flex-wrap items-center justify-between gap-3" data-testid="csc-selected-service">
           <div className="flex items-center gap-3">
-            <FaCheckCircle className="text-emerald-400 text-xl" />
+            <FaCheckCircle className="text-blue-400 text-xl" />
             <div>
               <div className="text-[10px] text-slate-400 uppercase tracking-widest">{lang === "hi" ? "चयनित सेवा" : "Selected Service"}</div>
               <div className="font-semibold text-white">{lang === "hi" ? service.hi : service.en}</div>
